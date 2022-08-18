@@ -27,7 +27,6 @@ class CarRepositoryImp :  ICarRepository {
     {
         GlobalScope.launch (Dispatchers.IO) {
             val serviceBuilder = ServiceBuilder(context)
-
             val destinationService  = serviceBuilder.buildService(APIInterface::class.java)
             val requestCall =destinationService.getCars()
             requestCall.enqueue(object : Callback<List<CarPreview>> {
@@ -38,7 +37,6 @@ class CarRepositoryImp :  ICarRepository {
                     }
                 }
                 override fun onFailure(call: retrofit2.Call<List<CarPreview>>, t: Throwable) {
-                    var i : Int
                 }
             })
         }

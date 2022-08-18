@@ -1,5 +1,9 @@
 package com.coding.sixt.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class CarPreview(
     val id: String,
     val modelIdentifier: String,
@@ -17,7 +21,7 @@ data class CarPreview(
     val longitude: Double,
     val innerCleanliness: String,
     val carImageUrl: String
-) {
+) : Parcelable {
 
     companion object {
         val EMPTY = CarPreview(

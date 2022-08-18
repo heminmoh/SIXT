@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 def nav_version = "2.5.1"
 def dagger_version = "2.4"
@@ -52,16 +53,23 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.android.gms:play-services-location:20.0.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    // KTX for the Maps SDK for Android
+    implementation 'com.google.maps.android:maps-ktx:3.2.1'
 
+    // (Optional) KTX for the Maps SDK for Android Utility Library
+    implementation 'com.google.maps.android:maps-utils-ktx:3.2.1'
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-
+    kapt "com.google.android.gms:play-services-maps:18.1.0"
+    implementation 'com.google.maps.android:android-maps-utils:2.2.3'
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     compileOnly "org.glassfish:javax.annotation:3.1.1"

@@ -9,5 +9,14 @@
         android:id="@+id/carsFragment"
         android:name="com.coding.sixt.fragments.CarsFragment"
         android:label="fragment_cars"
-        tools:layout="@layout/fragment_cars" />
+        tools:layout="@layout/fragment_cars" >
+        <action
+            android:id="@+id/action_carsFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.coding.sixt.fragments.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" />
 </navigation>

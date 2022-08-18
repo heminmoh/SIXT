@@ -9,6 +9,7 @@
 
 package com.coding.sixt.adpater
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
@@ -46,9 +47,18 @@ class CarsContentAdapter  @Inject constructor (private val CarsContentList: List
         return CarsContentList.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CarViewHolder, position: Int)
     {
+        holder.itemView.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putParcelable("object", CarsContentList[position])
+            bundle.putString("Value", "searchedData")
+            navController.navigate(R.id.action_carsFragment_to_mapFragment,bundle)
+        }
         Glide.with(binding.root).load(CarsContentList[position].carImageUrl).into(binding.CarItemImageView)
+        binding.make.text = CarsContentList[position].make
+        binding.modelname.text = "or similar | "+CarsContentList[position].modelName
         binding.name.text = CarsContentList[position].name
         return holder.bind(CarsContentList[position])
     }
