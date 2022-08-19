@@ -7,21 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.coding.sixt.R
-import com.coding.sixt.databinding.FragmentCarsBinding
 import com.coding.sixt.databinding.FragmentMapBinding
 import com.coding.sixt.model.CarPreview
 import com.coding.sixt.utilitiy.SIXTProgressDialog
-import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
 
@@ -32,6 +25,8 @@ class MapFragment : Fragment() {
     private lateinit var mMap : GoogleMap
     private var mapReady = false
      var hitObject : CarPreview? = null
+    var transmission = mapOf("M" to "Manual", "A" to "Automatic")
+    var fueltype = mapOf("P" to "Gasoline", "E" to "Ethanol", "D" to "Diesel")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -67,16 +62,20 @@ class MapFragment : Fragment() {
         }
         _viewBinding!!.companyTextView.text = "make"
         _viewBinding!!.ModelTextView.text = "name"
-        _viewBinding!!.licensePlate.text = "licensePlate"
+        _viewBinding!!.licensePlate.text = "license Plate"
         _viewBinding!!.colorTextView.text = "Color"
-        _viewBinding!!.fuelTypeTextView.text = "Fuel"
+        _viewBinding!!.fuelTypeTextView.text = "Fuel Type"
         _viewBinding!!.innerCleanlinessTextView.text = "InnerCleanliness"
+        _viewBinding!!.transmissionTextView.text = "transmission"
+        _viewBinding!!.fuelLeveltextView.text = "fuel Level"
         _viewBinding!!.model.text = hitObject?.name
         _viewBinding!!.name.text = hitObject?.make
         _viewBinding!!.licensePlateView.text = hitObject?.licensePlate
         _viewBinding!!.colorView.text = hitObject?.color
-        _viewBinding!!.fueltypeView.text = hitObject?.fuelType
+        _viewBinding!!.fueltypeView.text = fueltype[hitObject?.fuelType].toString()
         _viewBinding!!.innerCleanlinessView.text = hitObject?.innerCleanliness
+        _viewBinding!!.transmissionView.text = transmission[hitObject?.transmission].toString()
+        _viewBinding!!.fuelLevelView.text = hitObject?.fuelLevel
 
 //        https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=YOUR_API_KEY
     }

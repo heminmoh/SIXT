@@ -23,6 +23,7 @@
             android:value="@string/google_maps_key" />
         <activity
             android:name=".fragments.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
