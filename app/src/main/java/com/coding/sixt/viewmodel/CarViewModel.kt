@@ -15,9 +15,6 @@ import com.coding.sixt.repository.CarRepositoryImp
 
 class CarViewModel() : ViewModel() {
     private var recyclerLiveData : MutableLiveData<List<CarPreview>> = MutableLiveData()
-
-
-
     fun getListObservable (context: Context) : LiveData<List<CarPreview>>
     {
         recyclerLiveData = CarRepositoryImp().makeApiCall(context)

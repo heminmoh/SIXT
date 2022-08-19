@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.coding.sixt.R
 import com.coding.sixt.adpater.CarsContentAdapter
 import com.coding.sixt.databinding.FragmentCarsBinding
 import com.coding.sixt.model.CarPreview
@@ -20,14 +19,8 @@ import com.coding.sixt.viewmodel.CarViewModel
 class CarsFragment : Fragment() {
     private var _viewBinding: FragmentCarsBinding? = null
     private lateinit var carsRecyclerView: RecyclerView
-    private lateinit var viewmodel: CarViewModel
-    private var adapter: CarsContentAdapter? = null
     private lateinit var progressDialog : SIXTProgressDialog
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
