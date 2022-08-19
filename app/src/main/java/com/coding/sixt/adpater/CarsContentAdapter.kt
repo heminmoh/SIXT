@@ -57,7 +57,7 @@ class CarsContentAdapter  @Inject constructor (private val CarsContentList: List
             navController.navigate(R.id.action_carsFragment_to_mapFragment,bundle)
         }
         Glide.with(binding.root).load(CarsContentList[position].carImageUrl).into(binding.CarItemImageView)
-        binding.make.text = CarsContentList[position].make
+        binding.make.text = CarsContentList[position].make + " - "+ CarsContentList[position].modelIdentifier
         binding.modelname.text = "or similar | "+CarsContentList[position].modelName
         binding.name.text = CarsContentList[position].name
         return holder.bind(CarsContentList[position])

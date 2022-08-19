@@ -25,7 +25,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
 
-class MapFragment : Fragment() , OnMapReadyCallback{
+class MapFragment : Fragment() {
     private val SYDNEY = LatLng(48.042802, 11.510077)
     private var _viewBinding: FragmentMapBinding? = null
     private lateinit var progressDialog : SIXTProgressDialog
@@ -65,24 +65,20 @@ class MapFragment : Fragment() , OnMapReadyCallback{
                 ?.let { mMap.moveCamera(it) }
             progressDialog.dialog.dismiss()
         }
-        _viewBinding!!.CarModel.text = hitObject?.modelName
+        _viewBinding!!.companyTextView.text = "make"
+        _viewBinding!!.ModelTextView.text = "name"
+        _viewBinding!!.licensePlate.text = "licensePlate"
+        _viewBinding!!.colorTextView.text = "Color"
+        _viewBinding!!.fuelTypeTextView.text = "Fuel"
+        _viewBinding!!.innerCleanlinessTextView.text = "InnerCleanliness"
+        _viewBinding!!.model.text = hitObject?.name
+        _viewBinding!!.name.text = hitObject?.make
+        _viewBinding!!.licensePlateView.text = hitObject?.licensePlate
+        _viewBinding!!.colorView.text = hitObject?.color
+        _viewBinding!!.fueltypeView.text = hitObject?.fuelType
+        _viewBinding!!.innerCleanlinessView.text = hitObject?.innerCleanliness
 
-    }
-
-
-    override fun onMapReady(map: GoogleMap) {
-        map.addMarker(
-            MarkerOptions()
-                .position(LatLng(48.042802, 11.510077))
-                .title("San Francisco")
-        )
-        map.addMarker(
-            MarkerOptions()
-                .position(LatLng(48.042802, 11.510077))
-                .title("Marker")
-        )
-        map.moveCamera(CameraUpdateFactory.newLatLng(SYDNEY))
-
+//        https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=YOUR_API_KEY
     }
 
 
