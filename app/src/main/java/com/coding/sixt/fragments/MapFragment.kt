@@ -65,14 +65,14 @@ class MapFragment : Fragment() {
                     marker?.let { CameraUpdateFactory.newLatLngZoom(it,14f) }
                         ?.let { mMap.moveCamera(it) }
                 }
-                _viewBinding!!.companyTextView.text = "make"
-                _viewBinding!!.ModelTextView.text = "name"
-                _viewBinding!!.licensePlate.text = "license Plate"
-                _viewBinding!!.colorTextView.text = "Color"
-                _viewBinding!!.fuelTypeTextView.text = "Fuel Type"
-                _viewBinding!!.innerCleanlinessTextView.text = "InnerCleanliness"
-                _viewBinding!!.transmissionTextView.text = "transmission"
-                _viewBinding!!.fuelLeveltextView.text = "fuel Level"
+                _viewBinding!!.companyTextView.text = getString(R.string.make)
+                _viewBinding!!.ModelTextView.text = getString(R.string.name)
+                _viewBinding!!.licensePlate.text = getString(R.string.licensePlate)
+                _viewBinding!!.colorTextView.text = getString(R.string.Color)
+                _viewBinding!!.fuelTypeTextView.text = getString(R.string.fuelType)
+                _viewBinding!!.innerCleanlinessTextView.text = getString(R.string.InnerCleanliness)
+                _viewBinding!!.transmissionTextView.text = getString(R.string.transmission)
+                _viewBinding!!.fuelLeveltextView.text = getString(R.string.fuelLevel)
                 _viewBinding!!.model.text = hitObject?.name
                 _viewBinding!!.name.text = hitObject?.make
                 _viewBinding!!.licensePlateView.text = hitObject?.licensePlate
