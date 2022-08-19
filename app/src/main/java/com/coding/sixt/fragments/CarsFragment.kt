@@ -13,6 +13,7 @@ import com.coding.sixt.R
 import com.coding.sixt.adpater.CarsContentAdapter
 import com.coding.sixt.databinding.FragmentCarsBinding
 import com.coding.sixt.model.CarPreview
+import com.coding.sixt.utilitiy.SIXTProgressDialog
 import com.coding.sixt.viewmodel.CarViewModel
 
 
@@ -21,6 +22,7 @@ class CarsFragment : Fragment() {
     private lateinit var carsRecyclerView: RecyclerView
     private lateinit var viewmodel: CarViewModel
     private var adapter: CarsContentAdapter? = null
+    private lateinit var progressDialog : SIXTProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,14 +48,18 @@ class CarsFragment : Fragment() {
 
     private fun initViewModel()
     {
+        progressDialog = SIXTProgressDialog()
+        this.context?.let { progressDialog.show(it,"Please Wait...") }
         val viewModel =  ViewModelProvider(this)[CarViewModel::class.java]
         this.context?.let { it ->
             viewModel.getListObservable(it).observe(viewLifecycleOwner) {
                 if (it != null) {
                     makeViewDesign(it)
+                    progressDialog.dialog.dismiss()
                 } else {
-                    Toast.makeText(this.context," R.string.NoDataFetched", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this.context,"NoDataFetched", Toast.LENGTH_SHORT).show()
                 }
+                progressDialog.dialog.dismiss()
             }
         }
     }

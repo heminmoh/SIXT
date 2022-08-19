@@ -6,4 +6,7 @@
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
         AIzaSyAZoSiVaoGe803cDSEdyDR48I1XKILmJfg
     </string>
+    <style name="CustomDialogTheme">
+<!--        <item name="android:windowBackground">@android:color/</item>-->
+    </style>
 </resources>

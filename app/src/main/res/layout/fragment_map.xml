@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".fragments.MapFragment">
+
+    <data>
+        <variable
+            name="metadata"
+            type="com.coding.sixt.model.CarPreview" />
+    </data>
+<FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.MapFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -16,14 +23,24 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
+        android:id="@+id/CarModel"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="35dp"
         android:text="Car Model"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginTop="450dp"
-        app:layout_constraintEnd_toEndOf="@+id/mapFragment"
         app:layout_constraintTop_toTopOf="@+id/mapFragment"/>
+    <TextView
+        android:id="@+id/CarName"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:text="Model Name"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="35dp"
+        app:layout_constraintTop_toTopOf="@+id/CarModel"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
+</layout>
