@@ -16,6 +16,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
@@ -25,7 +26,8 @@ class MapFragment : Fragment() , OnMapReadyCallback{
     private val SYDNEY = LatLng(48.042802, 11.510077)
 
 
-    private var mMap: GoogleMap? = null
+    private lateinit var mMap : GoogleMap
+    private var mapReady = false
      var hitObject : CarPreview? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,12 +39,27 @@ class MapFragment : Fragment() , OnMapReadyCallback{
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_map, container, false)
+        var rootView =  inflater.inflate(R.layout.fragment_map, container, false)
+        hitObject = this.arguments?.getParcelable("object")
+        val mapFragment = childFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
+        mapFragment.getMapAsync {
+                googleMap -> mMap = googleMap
+            mapReady = true
+             val CarPoint = hitObject?.let { LatLng(it.latitude, hitObject!!.longitude) }
+            val marker = hitObject?.let { LatLng(it.latitude, hitObject!!.longitude) }
+            marker?.let { MarkerOptions().position(it).title(hitObject?.licensePlate).icon(
+                BitmapDescriptorFactory.fromResource(R.drawable.car)) }
+                ?.let { mMap.addMarker(it) }
+//            CarPoint?.let { CameraUpdateFactory.newLatLng(it) }?.let { mMap.moveCamera(it) }
+            CarPoint?.let { CameraUpdateFactory.newLatLngZoom(it, 14f) }
+                ?.let { mMap.moveCamera(it) }
+        }
+        return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-         hitObject = this.arguments?.getParcelable("object")
+
 
         val mapFragment = SupportMapFragment.newInstance()
         mapFragment.getMapAsync(this)
@@ -59,7 +76,7 @@ class MapFragment : Fragment() , OnMapReadyCallback{
                 .position(LatLng(48.042802, 11.510077))
                 .title("Marker")
         )
-        map.moveCamera(CameraUpdateFactory.newLatLng(SYDNEY));
+        map.moveCamera(CameraUpdateFactory.newLatLng(SYDNEY))
 
     }
 

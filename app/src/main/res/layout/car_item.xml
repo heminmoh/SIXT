@@ -27,7 +27,6 @@
         android:text=""
         android:textDirection="ltr"
         android:gravity="center"
-
         android:background="@color/black"
         android:textColor="@color/Orange"
         android:fontFamily="@font/roboto_medium"
