@@ -25,7 +25,6 @@ class CarRepositoryImp :  ICarRepository {
     @OptIn(DelicateCoroutinesApi::class)
     override fun makeApiCall(context: Context ) : MutableLiveData<List<CarPreview>>
     {
-
         GlobalScope.launch (Dispatchers.IO) {
             val serviceBuilder = ServiceBuilder(context)
             val destinationService  = serviceBuilder.buildService(APIInterface::class.java)
