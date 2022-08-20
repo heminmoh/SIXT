@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.coding.sixt.R
 import com.coding.sixt.databinding.FragmentMapBinding
 import com.coding.sixt.model.CarPreview
+import com.coding.sixt.utilitiy.Mapping
 import com.coding.sixt.utilitiy.SIXTProgressDialog
 import com.coding.sixt.viewmodel.MapViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -84,7 +85,7 @@ class MapFragment : Fragment() {
                 _viewBinding!!.colorView.text = hitObject?.color
                 _viewBinding!!.fueltypeView.text = fuelType[hitObject?.fuelType].toString()
                 _viewBinding!!.innerCleanlinessView.text = hitObject?.innerCleanliness
-                _viewBinding!!.transmissionView.text = transmission[hitObject?.transmission].toString()
+                _viewBinding!!.transmissionView.text = Mapping().transmissionMapping(hitObject?.transmission.toString())
                 _viewBinding!!.fuelLevelView.text = hitObject?.fuelLevel
 
             }

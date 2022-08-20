@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/PROJECTS/SIXTCodingChallenge/app/src/main/res/drawable/ic_baseline_format_list_bulleted_24.xml" value="0.215" />
+        <entry key="..\:/PROJECTS/SIXTCodingChallenge/app/src/main/res/drawable/ic_baseline_map_24.xml" value="0.215" />
         <entry key="..\:/PROJECTS/SIXTCodingChallenge/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/PROJECTS/SIXTCodingChallenge/app/src/main/res/layout/car_item.xml" value="0.2" />
         <entry key="..\:/PROJECTS/SIXTCodingChallenge/app/src/main/res/layout/fragment_cars.xml" value="0.23958333333333334" />

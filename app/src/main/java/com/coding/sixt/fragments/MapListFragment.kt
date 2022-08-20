@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.coding.sixt.R
 import com.coding.sixt.databinding.FragmentMapListBinding
 import com.coding.sixt.model.CarPreview
+import com.coding.sixt.utilitiy.Mapping
 import com.coding.sixt.viewmodel.CarViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -69,7 +70,9 @@ class MapListFragment : Fragment() {
 
                         mMap.setOnMarkerClickListener { marker ->
                             val carInfo: CarPreview? = it.last { it.licensePlate == marker.title }
-                            _viewBinding!!.Attribute.text = "Attributes"
+                            _viewBinding!!.FirstViewLine.visibility = View.VISIBLE
+                            _viewBinding!!.SecondViewLine.visibility = View.VISIBLE
+                            _viewBinding!!.Attribute.text = "Attributes  "
                             _viewBinding!!.companyTextView.text = getString(R.string.make)
                             _viewBinding!!.ModelTextView.text = getString(R.string.name)
                             _viewBinding!!.licensePlate.text = getString(R.string.licensePlate)
@@ -82,9 +85,9 @@ class MapListFragment : Fragment() {
                             _viewBinding!!.name.text = carInfo?.make
                             _viewBinding!!.licensePlateView.text = carInfo?.licensePlate
                             _viewBinding!!.colorView.text = carInfo?.color
-                            _viewBinding!!.fueltypeView.text = fuelType[carInfo?.fuelType].toString()
+                            _viewBinding!!.fueltypeView.text = Mapping().fuelTypeMapping(carInfo?.fuelType.toString())
                             _viewBinding!!.innerCleanlinessView.text = carInfo?.innerCleanliness
-                            _viewBinding!!.transmissionView.text = transmission[carInfo?.transmission].toString()
+                            _viewBinding!!.transmissionView.text = Mapping().transmissionMapping(carInfo?.transmission.toString())
                             _viewBinding!!.fuelLevelView.text = carInfo?.fuelLevel
                             false
                         }

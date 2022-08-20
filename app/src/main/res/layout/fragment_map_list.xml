@@ -26,13 +26,12 @@
         android:textStyle="bold"
         android:paddingStart="10dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:textAllCaps="true"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         android:textColor="@color/Orange"
         android:textSize="23sp"
-        android:text="Click To Details..."
+        android:text="Touch car For Details..."
         tools:ignore="MissingConstraints">
 
     </TextView>
@@ -42,11 +41,13 @@
         android:layout_marginTop="600dp"
         tools:ignore="MissingConstraints">
         <View
+            android:id="@+id/FirstViewLine"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="61dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
@@ -161,11 +162,13 @@
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints">
         <View
+            android:id="@+id/SecondViewLine"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="700dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"

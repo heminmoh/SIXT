@@ -14,5 +14,7 @@
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
         AIzaSyAZoSiVaoGe803cDSEdyDR48I1XKILmJfg
     </string>
+    <string name="group">Group</string>
+    <string name="map">Map</string>
 
 </resources>

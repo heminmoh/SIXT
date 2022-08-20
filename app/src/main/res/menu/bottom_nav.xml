@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Group"
+    <item android:title="@string/group"
         android:id="@+id/View"
         android:icon="@drawable/ic_baseline_format_list_bulleted_24"/>
-    <item android:title="Map"
+    <item android:title="@string/map"
         android:id="@+id/Map"
         android:icon="@drawable/ic_baseline_map_24"/>
 
