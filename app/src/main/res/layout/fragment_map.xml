@@ -16,7 +16,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
         android:layout_height="450dp"
         android:id="@+id/mapFragment"
@@ -25,20 +25,20 @@
     <TextView
         android:id="@+id/Attribute"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_marginTop="460dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="450dp"
         android:background="@color/black"
         android:fontFamily="@font/roboto_medium"
         android:textStyle="bold"
-        android:paddingLeft="50dp"
+        android:paddingStart="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:textAllCaps="true"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:text="Attributes  "
+        android:textColor="@color/Orange"
+        android:textSize="23sp"
+        android:text="Attributes "
         tools:ignore="MissingConstraints">
 
     </TextView>
@@ -61,7 +61,7 @@
         <TextView
             android:id="@+id/companyTextView"
             android:layout_width="0dp"
-            android:layout_height="25dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="500dp"
@@ -80,7 +80,7 @@
         <TextView
             android:id="@+id/ModelTextView"
             android:layout_width="0dp"
-            android:layout_height="25dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="8dp"
             android:gravity="center"
             android:textStyle="bold"
@@ -96,7 +96,7 @@
         <TextView
             android:id="@+id/licensePlate"
             android:layout_width="0dp"
-            android:layout_height="25dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:textStyle="bold"
@@ -112,10 +112,10 @@
         <TextView
             android:id="@+id/name"
             android:layout_width="0dp"
-            android:layout_height="25dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="525dp"
+            android:layout_marginTop="520dp"
             android:ellipsize="end"
             android:gravity="center"
 
@@ -131,7 +131,7 @@
         <TextView
             android:id="@+id/model"
             android:layout_width="0dp"
-            android:layout_height="25dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="8dp"
             android:gravity="center"
             android:ellipsize="end"
@@ -147,7 +147,7 @@
         <TextView
             android:id="@+id/licensePlateView"
             android:layout_width="0dp"
-            android:layout_height="25dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:maxLines="1"
@@ -158,6 +158,81 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/model"
             tools:text="Third " />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/transmissionTextView"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="620dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textAllCaps="true"
+                android:textColor="@color/Orange"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/fuelLeveltextView"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="transmission" />
+
+            <TextView
+                android:id="@+id/fuelLeveltextView"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textAllCaps="true"
+                android:textColor="@color/Orange"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@id/transmissionTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/transmissionTextView"
+                tools:text="fuelLevel" />
+
+            <TextView
+                android:id="@+id/transmissionView"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="640dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/fuelLeveltextView"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="transmission" />
+
+            <TextView
+                android:id="@+id/fuelLevelView"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@id/transmissionView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/transmissionView"
+                tools:text="fuelLevel" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -180,7 +255,7 @@
         <TextView
             android:id="@+id/colorTextView"
             android:layout_width="0dp"
-            android:layout_height="25dp"
+            android:layout_height="20dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="560dp"
             android:layout_marginEnd="8dp"
@@ -199,7 +274,7 @@
         <TextView
             android:id="@+id/fuelTypeTextView"
             android:layout_width="0dp"
-            android:layout_height="25dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:gravity="center"
@@ -216,7 +291,7 @@
         <TextView
             android:id="@+id/innerCleanlinessTextView"
             android:layout_width="0dp"
-            android:layout_height="25dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:gravity="center"
@@ -233,9 +308,9 @@
         <TextView
             android:id="@+id/colorView"
             android:layout_width="0dp"
-            android:layout_height="25dp"
+            android:layout_height="20dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="585dp"
+            android:layout_marginTop="580dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:gravity="center"
@@ -252,7 +327,7 @@
         <TextView
             android:id="@+id/fueltypeView"
             android:layout_width="0dp"
-            android:layout_height="25dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:gravity="center"
@@ -263,12 +338,12 @@
             app:layout_constraintEnd_toStartOf="@id/innerCleanlinessView"
             app:layout_constraintStart_toEndOf="@id/colorView"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Second" />
+            tools:text="fuel type" />
 
         <TextView
             android:id="@+id/innerCleanlinessView"
             android:layout_width="0dp"
-            android:layout_height="25dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:gravity="center"
@@ -278,81 +353,7 @@
             app:layout_constraintBaseline_toBaselineOf="@id/fueltypeView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/fueltypeView"
-            tools:text="Third " />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
-
-        <TextView
-            android:id="@+id/transmissionTextView"
-            android:layout_width="0dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="620dp"
-            android:layout_marginEnd="8dp"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="1"
-            android:textAllCaps="true"
-            android:textColor="@color/Orange"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/fuelLeveltextView"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="transmission" />
-
-        <TextView
-            android:id="@+id/fuelLeveltextView"
-            android:layout_width="0dp"
-            android:layout_height="25dp"
-            android:layout_marginEnd="8dp"
-            android:maxLines="1"
-            android:textAllCaps="true"
-            android:textColor="@color/Orange"
-            android:gravity="center"
-            android:textStyle="bold"
-            app:layout_constraintBaseline_toBaselineOf="@id/transmissionTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/transmissionTextView"
-            tools:text="fuelLevel" />
-        <TextView
-            android:id="@+id/transmissionView"
-            android:layout_width="0dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="645dp"
-            android:layout_marginEnd="8dp"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="1"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/fuelLeveltextView"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="transmission" />
-
-        <TextView
-            android:id="@+id/fuelLevelView"
-            android:layout_width="0dp"
-            android:layout_height="25dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:maxLines="1"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:textStyle="bold"
-            app:layout_constraintBaseline_toBaselineOf="@id/transmissionView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/transmissionView"
-            tools:text="fuelLevel" />
-
+            tools:text="Clear " />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

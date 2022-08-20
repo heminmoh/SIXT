@@ -47,11 +47,16 @@ class MapFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         progressDialog = SIXTProgressDialog()
+
         this.context?.let { progressDialog.show(it,"Please Wait...") }
+
         hitObject = this.arguments?.getParcelable("object")
-        val mapFragment = childFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
-        hitObject?.let { viewModel.fetchCarDetails(it) }
-        viewModel.details.observe(viewLifecycleOwner){
+
+        val mapFragment = _viewBinding?.mapFragment?.let { childFragmentManager.findFragmentById(it.id) } as SupportMapFragment
+
+//            hitObject?.let { viewModel.fetchCarDetails(it) }
+//
+//        viewModel.details.observe(viewLifecycleOwner){
 
             this.context?.let {
                 mapFragment.getMapAsync {
@@ -86,7 +91,7 @@ class MapFragment : Fragment() {
             progressDialog.dialog.dismiss()
         }
 
-        }
+//        }
 }
 
 
