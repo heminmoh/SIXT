@@ -11,6 +11,7 @@ package com.coding.sixt.adpater
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ import com.coding.sixt.R
 import com.coding.sixt.binding.CarViewHolder
 import com.coding.sixt.databinding.CarItemBinding
 import com.coding.sixt.model.CarPreview
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import javax.inject.Inject
 
 
@@ -52,7 +54,8 @@ class CarsContentAdapter  @Inject constructor (private val CarsContentList: List
             bundle.putString("Value", "searchedData")
             navController.navigate(R.id.action_carsFragment_to_mapFragment,bundle)
         }
-        Glide.with(binding.root).load(CarsContentList[position].carImageUrl).into(binding.CarItemImageView)
+        Glide.with(binding.root).load(CarsContentList[position].carImageUrl).error(context?.getDrawable(R.drawable.car))
+            .into(binding.CarItemImageView)
         binding.make.text = CarsContentList[position].make + " - "+ CarsContentList[position].modelIdentifier
         binding.modelname.text = "or similar | "+CarsContentList[position].modelName
         binding.name.text = CarsContentList[position].name
