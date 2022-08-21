@@ -13,11 +13,16 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
+import androidx.annotation.IdRes
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.coding.sixt.R
@@ -25,54 +30,62 @@ import com.coding.sixt.binding.CarViewHolder
 import com.coding.sixt.databinding.CarItemBinding
 import com.coding.sixt.fragments.MapFragment
 import com.coding.sixt.model.CarPreview
+import com.coding.sixt.utilitiy.safeNavigate
+import kotlinx.coroutines.NonDisposableHandle.parent
 import javax.inject.Inject
 
 
 class CarsContentAdapter  @Inject constructor (private val CarsContentList: List<CarPreview>)
 
-                                               :RecyclerView.Adapter<CarViewHolder>() {
+    : ListAdapter<CarPreview, CarsContentAdapter.ViewHolder>(CarDiff()) {
     var context: Context? = null
     private lateinit var binding: CarItemBinding
     private lateinit var navController : NavController
     @Inject
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding = CarItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         context = parent.context
-//        navController = Navigation.findNavController(parent)
-        return CarViewHolder(binding)
+//        navController = findNavController(binding.root)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
         return CarsContentList.size
     }
 
-    @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables")
-    override fun onBindViewHolder(holder: CarViewHolder, position: Int)
-    {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int)= holder.bind(CarsContentList[position])
 
-//        navController = Navigation.findNavController(holder.itemView)
-        holder.itemView.setOnClickListener {
-//            navController = Navigation.findNavController(it)
-            val bundle = Bundle()
-            bundle.putParcelable("object", CarsContentList[position])
-            bundle.putString("Value", "searchedData")
+    inner class ViewHolder(val binding: CarItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("UseCompatLoadingForDrawables", "SetTextI18n")
+        fun bind(item: CarPreview) {
+            Glide.with(binding.root).load(item.carImageUrl).error(context?.getDrawable(R.drawable.caronmap))
+                .into(binding.CarItemImageView)
+            binding.make.text = item.make + " | "+ item.modelIdentifier
+            binding.modelname.text = "or similar | "+item.modelName
+            binding.name.text = item.name
 
-            Navigation.findNavController(it).navigate(R.id.action_carsFragment_to_mapFragment,bundle)
-//            Navigation.createNavigateOnClickListener(R.id.action_carsFragment_to_mapFragment,bundle).onClick(holder.itemView)
-//            it.findNavController().navigate(R.id.action_carsFragment_to_mapFragment,bundle)
-//            navController.navigate(R.id.action_carsFragment_to_mapFragment,bundle)
+            binding.root.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putParcelable("object", item)
+                bundle.putString("Value", "searchedData")
+                findNavController(binding.root).navigate(R.id.action_carsFragment_to_mapFragment,bundle)
+            }
         }
-        Glide.with(binding.root).load(CarsContentList[position].carImageUrl).error(context?.getDrawable(R.drawable.car))
-            .into(binding.CarItemImageView)
-        binding.make.text = CarsContentList[position].make + " | "+ CarsContentList[position].modelIdentifier
-        binding.modelname.text = "or similar | "+CarsContentList[position].modelName
-        binding.name.text = CarsContentList[position].name
-        return holder.bind(CarsContentList[position])
     }
+        private class CarDiff : DiffUtil.ItemCallback<CarPreview>() {
+            override fun areItemsTheSame(
+                oldItem: CarPreview,
+                newItem: CarPreview
+            ): Boolean {
+                return oldItem.name == newItem.name
+            }
 
-
-
-
-
+            override fun areContentsTheSame(
+                oldItem: CarPreview,
+                newItem: CarPreview
+            ): Boolean {
+                return oldItem == newItem
+            }
+        }
 
 }

@@ -28,8 +28,6 @@ class MapFragment : Fragment() {
     private lateinit var mMap : GoogleMap
     private var mapReady = false
      private var hitObject : CarPreview? = null
-    private var transmission = mapOf("M" to "Manual", "A" to "Automatic")
-    private var fuelType = mapOf("P" to "Gasoline", "E" to "Ethanol", "D" to "Diesel")
      private val viewModel: MapViewModel by viewModels { object : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return MapViewModel() as T
@@ -41,6 +39,7 @@ class MapFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        container?.removeAllViews()
         _viewBinding =  FragmentMapBinding.inflate(inflater, container, false)
         return _viewBinding!!.root
     }
@@ -50,7 +49,7 @@ class MapFragment : Fragment() {
         progressDialog = SIXTProgressDialog()
 
         this.context?.let { progressDialog.show(it,"Please Wait...") }
-
+//        arguments?.getLong("catId", 0L) ?: 0L)
         hitObject = this.arguments?.getParcelable("object")
 
         val mapFragment = _viewBinding?.mapFragment?.let { childFragmentManager.findFragmentById(it.id) } as SupportMapFragment
@@ -66,11 +65,16 @@ class MapFragment : Fragment() {
                     val marker = hitObject?.let { LatLng(hitObject!!.latitude, hitObject!!.longitude) }
                     marker?.let {
                         MarkerOptions().position(it).title(hitObject?.licensePlate).icon(
-                            BitmapDescriptorFactory.fromResource(R.drawable.car))
+                            BitmapDescriptorFactory.fromResource(R.drawable.caronmap))
                     }?.let { mMap.addMarker(it) }
                     marker?.let { CameraUpdateFactory.newLatLngZoom(it,14f) }
                         ?.let { mMap.moveCamera(it) }
                 }
+                _viewBinding!!.FirstConstraintData.visibility=View.VISIBLE
+                _viewBinding!!.secondConstraint.visibility=View.VISIBLE
+                _viewBinding!!.thirdConstraint.visibility=View.VISIBLE
+                _viewBinding!!.FirstViewLine.visibility = View.VISIBLE
+                _viewBinding!!.SecondViewLine.visibility = View.VISIBLE
                 _viewBinding!!.companyTextView.text = getString(R.string.make)
                 _viewBinding!!.ModelTextView.text = getString(R.string.name)
                 _viewBinding!!.licensePlate.text = getString(R.string.licensePlate)
@@ -83,7 +87,7 @@ class MapFragment : Fragment() {
                 _viewBinding!!.name.text = hitObject?.make
                 _viewBinding!!.licensePlateView.text = hitObject?.licensePlate
                 _viewBinding!!.colorView.text = hitObject?.color
-                _viewBinding!!.fueltypeView.text = fuelType[hitObject?.fuelType].toString()
+                _viewBinding!!.fueltypeView.text = Mapping().fuelTypeMapping(hitObject?.fuelType.toString())
                 _viewBinding!!.innerCleanlinessView.text = hitObject?.innerCleanliness
                 _viewBinding!!.transmissionView.text = Mapping().transmissionMapping(hitObject?.transmission.toString())
                 _viewBinding!!.fuelLevelView.text = hitObject?.fuelLevel

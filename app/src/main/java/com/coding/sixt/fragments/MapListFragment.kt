@@ -26,8 +26,6 @@ class MapListFragment : Fragment() {
     private var _viewBinding: FragmentMapListBinding? = null
     private lateinit var mMap : GoogleMap
     private var mapReady = false
-    private var transmission = mapOf("M" to "Manual", "A" to "Automatic")
-    private var fuelType = mapOf("P" to "Gasoline", "E" to "Ethanol", "D" to "Diesel")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -54,14 +52,9 @@ class MapListFragment : Fragment() {
                             googleMap -> mMap = googleMap
                         for (i in it.indices) {
                             var latLng = LatLng(it[i].latitude,it[i].longitude)
-                            // below line is use to add marker to each location of our array list.
                             mMap.addMarker(
                                 MarkerOptions().position(latLng).title(it[i].licensePlate).icon(
                                     BitmapDescriptorFactory.fromResource(R.drawable.caronmap)) )
-                            mMap.animateCamera(CameraUpdateFactory.zoomTo(18.0f))
-
-                            // below line is use to move our camera to the specific location.
-                            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
                         }
 
                         mapReady = true
@@ -70,6 +63,9 @@ class MapListFragment : Fragment() {
 
                         mMap.setOnMarkerClickListener { marker ->
                             val carInfo: CarPreview? = it.last { it.licensePlate == marker.title }
+                            _viewBinding!!.FirstConstraintData.visibility=View.VISIBLE
+                            _viewBinding!!.secondConstraint.visibility=View.VISIBLE
+                            _viewBinding!!.thirdConstraint.visibility=View.VISIBLE
                             _viewBinding!!.FirstViewLine.visibility = View.VISIBLE
                             _viewBinding!!.SecondViewLine.visibility = View.VISIBLE
                             _viewBinding!!.Attribute.text = "Attributes  "
@@ -99,13 +95,6 @@ class MapListFragment : Fragment() {
         }
 
 
-//            val marker = hitObject?.let { LatLng(hitObject!!.latitude, hitObject!!.longitude) }
-//            marker?.let {
-//                MarkerOptions().position(it).title(hitObject?.licensePlate).icon(
-//                    BitmapDescriptorFactory.fromResource(R.drawable.car))
-//            }?.let { mMap.addMarker(it) }
-//            marker?.let { CameraUpdateFactory.newLatLngZoom(it,14f) }
-//                ?.let { mMap.moveCamera(it) }
 
     }
 

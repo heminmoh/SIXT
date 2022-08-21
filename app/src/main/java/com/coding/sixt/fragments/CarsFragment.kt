@@ -28,7 +28,6 @@ class CarsFragment : Fragment() {
     ): View {
 
         _viewBinding = FragmentCarsBinding.inflate(inflater, container, false)
-
         return _viewBinding!!.root
     }
 
