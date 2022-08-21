@@ -8,6 +8,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
 import com.coding.sixt.R
 import com.coding.sixt.databinding.FragmentMapBinding
 import com.coding.sixt.model.CarPreview
@@ -42,7 +43,7 @@ class MapFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         progressDialog = SIXTProgressDialog()
-        this.context?.let { progressDialog.show(it,"Please Wait...") }
+        this.context?.let { progressDialog.show(it) }
         navController = Navigation.findNavController(view)
         hitObject = this.arguments?.getParcelable("object")
 
@@ -59,6 +60,7 @@ class MapFragment : Fragment() {
                     marker?.let { CameraUpdateFactory.newLatLngZoom(it,14f) }
                         ?.let { mMap.moveCamera(it) }
                 }
+                _viewBinding!!.forthConstraint.visibility = View.VISIBLE
                 _viewBinding!!.FirstConstraintData.visibility=View.VISIBLE
                 _viewBinding!!.secondConstraint.visibility=View.VISIBLE
                 _viewBinding!!.thirdConstraint.visibility=View.VISIBLE
@@ -71,6 +73,9 @@ class MapFragment : Fragment() {
                 _viewBinding!!.fuelTypeTextView.text = getString(R.string.fuelType)
                 _viewBinding!!.innerCleanlinessTextView.text = getString(R.string.InnerCleanliness)
                 _viewBinding!!.transmissionTextView.text = getString(R.string.transmission)
+                Glide.with(_viewBinding!!.root).load(hitObject?.carImageUrl).
+                error(context?.getDrawable(R.drawable.caronmap))
+                    .into(_viewBinding!!.CarItemImageView)
                 _viewBinding!!.fuelLevelTextView.text = getString(R.string.fuelLevel)
                 _viewBinding!!.model.text = hitObject?.name
                 _viewBinding!!.name.text = hitObject?.make

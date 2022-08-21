@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.progress_dialog_view.view.*
 class SIXTProgressDialog {
 
      lateinit var dialog: CustomDialog
-    fun show(context : Context, title: CharSequence?): Dialog {
+    fun show(context : Context): Dialog {
         val inflater = (context as Activity).layoutInflater
         val view = inflater.inflate(R.layout.progress_dialog_view, null)
         Glide.with(context).load(R.drawable.loading).into(view.progressbar1)

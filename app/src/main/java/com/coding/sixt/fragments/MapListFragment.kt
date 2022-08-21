@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.coding.sixt.R
 import com.coding.sixt.databinding.FragmentMapListBinding
 import com.coding.sixt.model.CarPreview
@@ -45,7 +46,7 @@ class MapListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         progressDialog = SIXTProgressDialog()
-        this.context?.let { progressDialog.show(it,"Please Wait...") }
+        this.context?.let { progressDialog.show(it) }
         val mapFragment = _viewBinding?.mapFragment?.let { childFragmentManager.findFragmentById(it.id) } as SupportMapFragment
         val viewModel =  ViewModelProvider(this)[CarViewModel::class.java]
         this.context?.let { it ->
@@ -72,6 +73,7 @@ class MapListFragment : Fragment() {
                             _viewBinding!!.thirdConstraint.visibility=View.VISIBLE
                             _viewBinding!!.FirstViewLine.visibility = View.VISIBLE
                             _viewBinding!!.SecondViewLine.visibility = View.VISIBLE
+                            _viewBinding!!.forthConstraint.visibility = View.VISIBLE
                             _viewBinding!!.Attribute.text = "Attributes  "
                             _viewBinding!!.companyTextView.text = getString(R.string.make)
                             _viewBinding!!.ModelTextView.text = getString(R.string.name)
@@ -80,6 +82,10 @@ class MapListFragment : Fragment() {
                             _viewBinding!!.fuelTypeTextView.text = getString(R.string.fuelType)
                             _viewBinding!!.innerCleanlinessTextView.text = getString(R.string.InnerCleanliness)
                             _viewBinding!!.transmissionTextView.text = getString(R.string.transmission)
+
+                            Glide.with(_viewBinding!!.root).load(carInfo?.carImageUrl).
+                            error(context?.getDrawable(R.drawable.caronmap))
+                                .into(_viewBinding!!.CarItemImageView)
                             _viewBinding!!.fuelLevelTextView.text = getString(R.string.fuelLevel)
                             _viewBinding!!.model.text = carInfo?.name
                             _viewBinding!!.name.text = carInfo?.make

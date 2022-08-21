@@ -292,9 +292,9 @@
             android:id="@+id/thirdConstraint"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="120dp"
             android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/mapFragment"
+            app:layout_constraintBottom_toBottomOf="@+id/forthConstraint"
             android:background="@color/white"
             tools:ignore="MissingConstraints">
 
@@ -365,6 +365,26 @@
                 tools:text="fuelLevel" />
 
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/forthConstraint"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginBottom="50dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/mapFragment"
+            android:background="@color/white"
+            tools:ignore="MissingConstraints">
+            <ImageView
+                android:id="@+id/CarItemImageView"
+                android:layout_width="match_parent"
+                android:contentDescription="@string/empty"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

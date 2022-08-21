@@ -41,7 +41,7 @@ class CarsFragment : Fragment() {
     private fun initViewModel()
     {
         progressDialog = SIXTProgressDialog()
-        this.context?.let { progressDialog.show(it,"Please Wait...") }
+        this.context?.let { progressDialog.show(it) }
         val viewModel =  ViewModelProvider(this)[CarViewModel::class.java]
         this.context?.let { it ->
             viewModel.getListObservable(it).observe(viewLifecycleOwner) {
