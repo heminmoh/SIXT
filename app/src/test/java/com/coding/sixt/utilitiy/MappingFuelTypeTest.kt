@@ -9,6 +9,6 @@ internal class MappingFuelTypeTest{
         val originalFormat = "E"
         val expected = "Ethanol"
         print(mappingFuelType.fuelTypeMapping(originalFormat))
-        assertEquals(expected, originalFormat?.let { mappingFuelType.fuelTypeMapping(it) })
+        assertEquals(expected, originalFormat.let { mappingFuelType.fuelTypeMapping(it) })
     }
 }

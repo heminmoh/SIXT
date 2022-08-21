@@ -26,12 +26,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.coding.sixt.R
-import com.coding.sixt.binding.CarViewHolder
 import com.coding.sixt.databinding.CarItemBinding
-import com.coding.sixt.fragments.MapFragment
 import com.coding.sixt.model.CarPreview
-import com.coding.sixt.utilitiy.safeNavigate
-import kotlinx.coroutines.NonDisposableHandle.parent
 import javax.inject.Inject
 
 
