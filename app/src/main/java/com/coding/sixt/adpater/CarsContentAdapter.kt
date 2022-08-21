@@ -69,8 +69,6 @@ class CarsContentAdapter  @Inject constructor (private val CarsContentList: List
                 navController = findNavController(binding.root)
                 val bundle = Bundle()
                 bundle.putParcelable("object", item)
-                bundle.putString("Value", "searchedData")
-
                 navController.navigate(R.id.mapFragment,bundle)
             }
         }
