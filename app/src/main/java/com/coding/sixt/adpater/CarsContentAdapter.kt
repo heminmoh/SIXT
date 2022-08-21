@@ -45,7 +45,7 @@ class CarsContentAdapter  @Inject constructor (private val CarsContentList: List
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding = CarItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         context = parent.context
-//        navController = findNavController(binding.root)
+//
         return ViewHolder(binding)
     }
 
@@ -55,20 +55,23 @@ class CarsContentAdapter  @Inject constructor (private val CarsContentList: List
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)= holder.bind(CarsContentList[position])
 
-    inner class ViewHolder(val binding: CarItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: CarItemBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("UseCompatLoadingForDrawables", "SetTextI18n")
         fun bind(item: CarPreview) {
             Glide.with(binding.root).load(item.carImageUrl).error(context?.getDrawable(R.drawable.caronmap))
                 .into(binding.CarItemImageView)
+
             binding.make.text = item.make + " | "+ item.modelIdentifier
             binding.modelname.text = "or similar | "+item.modelName
             binding.name.text = item.name
 
             binding.root.setOnClickListener {
+                navController = findNavController(binding.root)
                 val bundle = Bundle()
                 bundle.putParcelable("object", item)
                 bundle.putString("Value", "searchedData")
-                findNavController(binding.root).navigate(R.id.action_carsFragment_to_mapFragment,bundle)
+
+                navController.navigate(R.id.mapFragment,bundle)
             }
         }
     }

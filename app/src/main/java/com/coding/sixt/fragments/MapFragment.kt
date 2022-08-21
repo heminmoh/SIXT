@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.coding.sixt.R
 import com.coding.sixt.databinding.FragmentMapBinding
 import com.coding.sixt.model.CarPreview
@@ -26,6 +29,7 @@ class MapFragment : Fragment() {
     private var _viewBinding: FragmentMapBinding? = null
     private lateinit var progressDialog : SIXTProgressDialog
     private lateinit var mMap : GoogleMap
+    private lateinit var navController : NavController
     private var mapReady = false
      private var hitObject : CarPreview? = null
      private val viewModel: MapViewModel by viewModels { object : ViewModelProvider.Factory {
@@ -47,17 +51,11 @@ class MapFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         progressDialog = SIXTProgressDialog()
-
         this.context?.let { progressDialog.show(it,"Please Wait...") }
-//        arguments?.getLong("catId", 0L) ?: 0L)
+        navController = Navigation.findNavController(view)
         hitObject = this.arguments?.getParcelable("object")
 
         val mapFragment = _viewBinding?.mapFragment?.let { childFragmentManager.findFragmentById(it.id) } as SupportMapFragment
-
-//            hitObject?.let { viewModel.fetchCarDetails(it) }
-//
-//        viewModel.details.observe(viewLifecycleOwner){
-
             this.context?.let {
                 mapFragment.getMapAsync {
                         googleMap -> mMap = googleMap
@@ -94,9 +92,15 @@ class MapFragment : Fragment() {
 
             }
             progressDialog.dialog.dismiss()
-        }
 
-//        }
+        requireActivity().onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    val bundle = Bundle()
+                    navController.navigate(R.id.action_mapFragment_to_carsFragment,bundle)
+                }
+            })
+        }
 }
 
 

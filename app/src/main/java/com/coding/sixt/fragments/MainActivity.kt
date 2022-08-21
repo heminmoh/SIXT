@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        replaceFragment(CarsFragment())
+        replaceFragment(CarsFragment())
 
         binding.bottomNavigationView.setOnItemSelectedListener {
 
@@ -40,10 +40,12 @@ class MainActivity : AppCompatActivity() {
     }
     private fun replaceFragment(fragment : Fragment){
 
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.nav_host_fragment, fragment)
-        fragmentTransaction.commit()
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.nav_host_fragment, fragment)
+            fragmentTransaction.commit()
+
+
 
 
     }

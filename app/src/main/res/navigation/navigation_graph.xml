@@ -13,16 +13,27 @@
         <action
             android:id="@+id/action_carsFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_carsFragment_to_mapListFragment"
+            app:destination="@id/mapListFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.coding.sixt.fragments.MapFragment"
         android:label="fragment_map"
-        tools:layout="@layout/fragment_map" />
+        tools:layout="@layout/fragment_map" >
+        <action
+            android:id="@+id/action_mapFragment_to_carsFragment"
+            app:destination="@id/carsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mapListFragment"
         android:name="com.coding.sixt.fragments.MapListFragment"
         android:label="fragment_map_list"
-        tools:layout="@layout/fragment_map_list" />
+        tools:layout="@layout/fragment_map_list" >
+        <action
+            android:id="@+id/action_mapListFragment_to_carsFragment"
+            app:destination="@id/carsFragment" />
+    </fragment>
 
 </navigation>
