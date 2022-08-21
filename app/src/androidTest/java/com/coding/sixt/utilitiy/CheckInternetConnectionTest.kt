@@ -9,22 +9,14 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4ClassRunner::class)
 internal class CheckInternetConnectionTest
 {
-
-
         @JvmField
         var connectionInternetConnection= CheckInternetConnection()
-        lateinit var instrumentationContext: Context
+        private lateinit var instrumentationContext: Context
         @org.junit.Test
         fun checkForInternet() {
             instrumentationContext = InstrumentationRegistry.getInstrumentation().targetContext
-
-            print(connectionInternetConnection.checkForInternet(
-                instrumentationContext        ))
-            Assert.assertEquals(
-                true, connectionInternetConnection.checkForInternet(
-                    instrumentationContext
-                )
-            )
-
-        }
-    }
+            val connectionStatus = connectionInternetConnection.checkForInternet(instrumentationContext)
+            print(connectionStatus)
+            Assert.assertEquals(true, connectionStatus)
+         }
+}

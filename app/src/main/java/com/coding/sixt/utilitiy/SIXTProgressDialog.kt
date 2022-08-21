@@ -8,11 +8,9 @@ package com.coding.sixt.utilitiy
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
-import android.graphics.Color
-import android.view.View
-import android.widget.TextView
-import androidx.cardview.widget.CardView
+import com.bumptech.glide.Glide
 import com.coding.sixt.R
+import kotlinx.android.synthetic.main.progress_dialog_view.view.*
 
 class SIXTProgressDialog {
 
@@ -20,13 +18,7 @@ class SIXTProgressDialog {
     fun show(context : Context, title: CharSequence?): Dialog {
         val inflater = (context as Activity).layoutInflater
         val view = inflater.inflate(R.layout.progress_dialog_view, null)
-
-//        if (title != null) {
-//            cpTitle.text = title
-//        }
-//        cpCardView.setCardBackgroundColor(Color.parseColor("#70000000"))
-//        cpTitle.setTextColor(Color.WHITE)
-//        dialog.window?.setDimAmount(0F)
+        Glide.with(context).load(R.drawable.loading).into(view.progressbar1)
         dialog = CustomDialog(context)
         dialog.setContentView(view)
         dialog.show()
@@ -39,7 +31,8 @@ class SIXTProgressDialog {
 
         init {
 
-            window?.decorView?.rootView?.setBackgroundResource(R.color.black)
+            window?.decorView?.rootView?.setBackgroundResource(android.R.color.transparent)
+
 
         }
 

@@ -33,7 +33,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="110dp"
-        android:background="@color/green_700"
         tools:listitem="@layout/car_item">
 
     </androidx.recyclerview.widget.RecyclerView>

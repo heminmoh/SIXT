@@ -6,9 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.coding.sixt.R
@@ -16,7 +13,6 @@ import com.coding.sixt.databinding.FragmentMapBinding
 import com.coding.sixt.model.CarPreview
 import com.coding.sixt.utilitiy.Mapping
 import com.coding.sixt.utilitiy.SIXTProgressDialog
-import com.coding.sixt.viewmodel.MapViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
@@ -32,11 +28,6 @@ class MapFragment : Fragment() {
     private lateinit var navController : NavController
     private var mapReady = false
      private var hitObject : CarPreview? = null
-     private val viewModel: MapViewModel by viewModels { object : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return MapViewModel() as T
-        }
-    } }
 
 
     override fun onCreateView(
@@ -80,12 +71,12 @@ class MapFragment : Fragment() {
                 _viewBinding!!.fuelTypeTextView.text = getString(R.string.fuelType)
                 _viewBinding!!.innerCleanlinessTextView.text = getString(R.string.InnerCleanliness)
                 _viewBinding!!.transmissionTextView.text = getString(R.string.transmission)
-                _viewBinding!!.fuelLeveltextView.text = getString(R.string.fuelLevel)
+                _viewBinding!!.fuelLevelTextView.text = getString(R.string.fuelLevel)
                 _viewBinding!!.model.text = hitObject?.name
                 _viewBinding!!.name.text = hitObject?.make
                 _viewBinding!!.licensePlateView.text = hitObject?.licensePlate
                 _viewBinding!!.colorView.text = hitObject?.color
-                _viewBinding!!.fueltypeView.text = Mapping().fuelTypeMapping(hitObject?.fuelType.toString())
+                _viewBinding!!.fuelTypeView.text = Mapping().fuelTypeMapping(hitObject?.fuelType.toString())
                 _viewBinding!!.innerCleanlinessView.text = hitObject?.innerCleanliness
                 _viewBinding!!.transmissionView.text = Mapping().transmissionMapping(hitObject?.transmission.toString())
                 _viewBinding!!.fuelLevelView.text = hitObject?.fuelLevel

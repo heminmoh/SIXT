@@ -12,6 +12,7 @@ import com.coding.sixt.R
 import com.coding.sixt.databinding.FragmentMapListBinding
 import com.coding.sixt.model.CarPreview
 import com.coding.sixt.utilitiy.Mapping
+import com.coding.sixt.utilitiy.SIXTProgressDialog
 import com.coding.sixt.viewmodel.CarViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -23,6 +24,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 
 class MapListFragment : Fragment() {
 
+    private lateinit var progressDialog : SIXTProgressDialog
     private var _viewBinding: FragmentMapListBinding? = null
     private lateinit var mMap : GoogleMap
     private var mapReady = false
@@ -42,6 +44,8 @@ class MapListFragment : Fragment() {
     @SuppressLint("PotentialBehaviorOverride")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        progressDialog = SIXTProgressDialog()
+        this.context?.let { progressDialog.show(it,"Please Wait...") }
         val mapFragment = _viewBinding?.mapFragment?.let { childFragmentManager.findFragmentById(it.id) } as SupportMapFragment
         val viewModel =  ViewModelProvider(this)[CarViewModel::class.java]
         this.context?.let { it ->
@@ -76,17 +80,18 @@ class MapListFragment : Fragment() {
                             _viewBinding!!.fuelTypeTextView.text = getString(R.string.fuelType)
                             _viewBinding!!.innerCleanlinessTextView.text = getString(R.string.InnerCleanliness)
                             _viewBinding!!.transmissionTextView.text = getString(R.string.transmission)
-                            _viewBinding!!.fuelLeveltextView.text = getString(R.string.fuelLevel)
+                            _viewBinding!!.fuelLevelTextView.text = getString(R.string.fuelLevel)
                             _viewBinding!!.model.text = carInfo?.name
                             _viewBinding!!.name.text = carInfo?.make
                             _viewBinding!!.licensePlateView.text = carInfo?.licensePlate
                             _viewBinding!!.colorView.text = carInfo?.color
-                            _viewBinding!!.fueltypeView.text = Mapping().fuelTypeMapping(carInfo?.fuelType.toString())
+                            _viewBinding!!.fuelTypeView.text = Mapping().fuelTypeMapping(carInfo?.fuelType.toString())
                             _viewBinding!!.innerCleanlinessView.text = carInfo?.innerCleanliness
                             _viewBinding!!.transmissionView.text = Mapping().transmissionMapping(carInfo?.transmission.toString())
                             _viewBinding!!.fuelLevelView.text = carInfo?.fuelLevel
                             false
                         }
+                        progressDialog.dialog.dismiss()
                     }
                 } else {
                     Toast.makeText(this.context,"NoDataFetched", Toast.LENGTH_SHORT).show()

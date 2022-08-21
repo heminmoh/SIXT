@@ -1,35 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cp_bg_view"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"          android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    android:layout_centerInParent="true"
+    android:visibility="visible"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:background="@android:color/transparent"
+    tools:context=".fragments.MainActivity">
 
 
+    <ImageView
+        android:id="@+id/progressbar1"
+        android:layout_marginTop="80dp"
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:visibility="visible"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/loading"/>
 
 
-            <ImageView
-                android:id="@+id/cp_pBar"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="8dp"
-                android:src="@drawable/loading"
-
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
+</RelativeLayout>
