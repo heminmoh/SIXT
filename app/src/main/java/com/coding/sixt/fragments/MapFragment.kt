@@ -1,5 +1,6 @@
 package com.coding.sixt.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,23 +24,22 @@ import com.google.android.gms.maps.model.MarkerOptions
 
 
 class MapFragment : Fragment() {
-    private var _viewBinding: FragmentMapBinding? = null
+    private var binding: FragmentMapBinding? = null
     private lateinit var progressDialog : SIXTProgressDialog
     private lateinit var mMap : GoogleMap
     private lateinit var navController : NavController
     private var mapReady = false
-     private var hitObject : CarPreview? = null
-
+    private var hitObject : CarPreview? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        container?.removeAllViews()
-        _viewBinding =  FragmentMapBinding.inflate(inflater, container, false)
-        return _viewBinding!!.root
+        binding =  FragmentMapBinding.inflate(inflater, container, false)
+        return binding!!.root
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         progressDialog = SIXTProgressDialog()
@@ -47,7 +47,8 @@ class MapFragment : Fragment() {
         navController = Navigation.findNavController(view)
         hitObject = this.arguments?.getParcelable("object")
 
-        val mapFragment = _viewBinding?.mapFragment?.let { childFragmentManager.findFragmentById(it.id) } as SupportMapFragment
+        val mapFragment = binding?.mapFragment?.let {
+            childFragmentManager.findFragmentById(it.id) } as SupportMapFragment
             this.context?.let {
                 mapFragment.getMapAsync {
                         googleMap -> mMap = googleMap
@@ -60,37 +61,41 @@ class MapFragment : Fragment() {
                     marker?.let { CameraUpdateFactory.newLatLngZoom(it,14f) }
                         ?.let { mMap.moveCamera(it) }
                 }
-                _viewBinding!!.forthConstraint.visibility = View.VISIBLE
-                _viewBinding!!.FirstConstraintData.visibility=View.VISIBLE
-                _viewBinding!!.secondConstraint.visibility=View.VISIBLE
-                _viewBinding!!.thirdConstraint.visibility=View.VISIBLE
-                _viewBinding!!.FirstViewLine.visibility = View.VISIBLE
-                _viewBinding!!.SecondViewLine.visibility = View.VISIBLE
-                _viewBinding!!.companyTextView.text = getString(R.string.make)
-                _viewBinding!!.ModelTextView.text = getString(R.string.name)
-                _viewBinding!!.licensePlate.text = getString(R.string.licensePlate)
-                _viewBinding!!.colorTextView.text = getString(R.string.Color)
-                _viewBinding!!.fuelTypeTextView.text = getString(R.string.fuelType)
-                _viewBinding!!.innerCleanlinessTextView.text = getString(R.string.InnerCleanliness)
-                _viewBinding!!.transmissionTextView.text = getString(R.string.transmission)
-                Glide.with(_viewBinding!!.root).load(hitObject?.carImageUrl).
-                error(context?.getDrawable(R.drawable.caronmap))
-                    .into(_viewBinding!!.CarItemImageView)
-                _viewBinding!!.fuelLevelTextView.text = getString(R.string.fuelLevel)
-                _viewBinding!!.model.text = hitObject?.name
-                _viewBinding!!.name.text = hitObject?.make
-                _viewBinding!!.licensePlateView.text = hitObject?.licensePlate
-                _viewBinding!!.colorView.text = hitObject?.color
-                _viewBinding!!.fuelTypeView.text = Mapping().fuelTypeMapping(hitObject?.fuelType.toString())
-                _viewBinding!!.innerCleanlinessView.text = hitObject?.innerCleanliness
-                _viewBinding!!.transmissionView.text = Mapping().transmissionMapping(hitObject?.transmission.toString())
-                _viewBinding!!.fuelLevelView.text = hitObject?.fuelLevel
 
+                binding!!.forthConstraint.visibility     = View.VISIBLE
+                binding!!.FirstConstraintData.visibility = View.VISIBLE
+                binding!!.secondConstraint.visibility    = View.VISIBLE
+                binding!!.thirdConstraint.visibility     = View.VISIBLE
+                binding!!.FirstViewLine.visibility       = View.VISIBLE
+                binding!!.SecondViewLine.visibility      = View.VISIBLE
+
+                binding!!.companyTextView.text           = getString(R.string.make)
+                binding!!.ModelTextView.text             = getString(R.string.name)
+                binding!!.licensePlate.text              = getString(R.string.licensePlate)
+                binding!!.colorTextView.text             = getString(R.string.Color)
+                binding!!.fuelTypeTextView.text          = getString(R.string.fuelType)
+                binding!!.innerCleanlinessTextView.text  = getString(R.string.InnerCleanliness)
+                binding!!.transmissionTextView.text      = getString(R.string.transmission)
+                binding!!.fuelLevelTextView.text         = getString(R.string.fuelLevel)
+
+                Glide.with(binding!!.root).load(hitObject?.carImageUrl).
+                error(context?.getDrawable(R.drawable.caronmap))
+                    .into(binding!!.CarItemImageView)
+
+                binding!!.model.text                = hitObject?.name
+                binding!!.name.text                 = hitObject?.make
+                binding!!.licensePlateView.text     = hitObject?.licensePlate
+                binding!!.colorView.text            = hitObject?.color
+                binding!!.fuelTypeView.text         = Mapping().fuelTypeMapping(hitObject?.fuelType.toString())
+                binding!!.innerCleanlinessView.text = hitObject?.innerCleanliness
+                binding!!.transmissionView.text     = Mapping().transmissionMapping(hitObject?.transmission.toString())
+                binding!!.fuelLevelView.text        = hitObject?.fuelLevel
             }
             progressDialog.dialog.dismiss()
 
         requireActivity().onBackPressedDispatcher
-            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true)
+            {
                 override fun handleOnBackPressed() {
                     val bundle = Bundle()
                     navController.navigate(R.id.action_mapFragment_to_carsFragment,bundle)

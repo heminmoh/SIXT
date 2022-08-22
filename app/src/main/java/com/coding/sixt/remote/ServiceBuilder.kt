@@ -28,7 +28,7 @@ import javax.inject.Singleton
     private val cacheSize = (10 * 1024 * 1024).toLong()
     private val myCache = Cache(context.cacheDir, cacheSize)
     private val checkInternetConnection= CheckInternetConnection()
-    private  val url ="https://cdn.sixt.io/codingtask/"
+    val url ="https://cdn.sixt.io/codingtask/"
     private val okHttp =OkHttpClient.Builder().cache(myCache).addInterceptor{
         chain ->  var request = chain.request()
                  request = if (checkInternetConnection.checkForInternet(context))

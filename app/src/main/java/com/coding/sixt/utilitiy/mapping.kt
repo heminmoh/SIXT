@@ -9,7 +9,7 @@ class Mapping {
         var transmissionResult : String
         transmissionResult = transmission[data].toString()
         if( transmissionResult == "null") {
-            transmissionResult = "Manual"
+            transmissionResult = "Unknown"
         }
         return  transmissionResult
     }
@@ -19,7 +19,7 @@ class Mapping {
         var fuelTypeResult : String
         fuelTypeResult = fuelType[data].toString()
         if( fuelTypeResult == "null") {
-            fuelTypeResult = "Gasoline"
+            fuelTypeResult = "Unknown"
         }
         return  fuelTypeResult
     }

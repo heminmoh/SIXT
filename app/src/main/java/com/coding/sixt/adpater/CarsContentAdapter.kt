@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide
 import com.coding.sixt.R
 import com.coding.sixt.databinding.CarItemBinding
 import com.coding.sixt.model.CarPreview
+import com.coding.sixt.utilitiy.Mapping
 import javax.inject.Inject
 
 
@@ -55,6 +56,8 @@ class CarsContentAdapter  @Inject constructor (private val CarsContentList: List
             binding.make.text = item.make + " | "+ item.modelIdentifier
             binding.modelname.text = "or similar | "+item.modelName
             binding.name.text = item.name
+            binding.transmissionView.text = (context?.getString(R.string.transmission)) + " : " + Mapping().transmissionMapping(item.transmission)
+            binding.fuelTypeView.text     = (context?.getString(R.string.fuelType)) + " : " + Mapping().fuelTypeMapping(item.fuelType)
 
             binding.root.setOnClickListener {
                 navController = findNavController(binding.root)

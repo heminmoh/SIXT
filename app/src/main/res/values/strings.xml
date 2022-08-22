@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">SIXT</string>
     <string name="make">make</string>
-    <string name="Attributes">Attributes   </string>
+    <string name="Attributes">Attributes…</string>
     <string name="name">name</string>
     <string name="Color">Color</string>
     <string name="fuelType">Fuel Type</string>
     <string name="licensePlate">license Plate</string>
     <string name="InnerCleanliness">"InnerCleanliness"</string>
-    <string name="transmission">"transmission"</string>
+    <string name="transmission">"Transmission"</string>
     <string name="fuelLevel">"fuel Level"</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="empty">Empty</string>
@@ -17,5 +17,4 @@
     <string name="group">Group</string>
     <string name="map">Map</string>
     <string name="touch_car_for_details">Touch car For Details…</string>
-    <string name="attributes">Attributes</string>
 </resources>

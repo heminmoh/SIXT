@@ -26,7 +26,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 class MapListFragment : Fragment() {
 
     private lateinit var progressDialog : SIXTProgressDialog
-    private var _viewBinding: FragmentMapListBinding? = null
+    private var binding: FragmentMapListBinding? = null
     private lateinit var mMap : GoogleMap
     private var mapReady = false
 
@@ -34,8 +34,8 @@ class MapListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _viewBinding =  FragmentMapListBinding.inflate(inflater, container, false)
-        return _viewBinding!!.root
+        binding =  FragmentMapListBinding.inflate(inflater, container, false)
+        return binding!!.root
     }
 
     @SuppressLint("PotentialBehaviorOverride", "UseCompatLoadingForDrawables", "SetTextI18n")
@@ -43,7 +43,8 @@ class MapListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         progressDialog = SIXTProgressDialog()
         this.context?.let { progressDialog.show(it) }
-        val mapFragment = _viewBinding?.mapFragment?.let { childFragmentManager.findFragmentById(it.id) } as SupportMapFragment
+        val mapFragment = binding?.mapFragment?.let {
+            childFragmentManager.findFragmentById(it.id) } as SupportMapFragment
         val viewModel =  ViewModelProvider(this)[CarViewModel::class.java]
         this.context?.let { it ->
             viewModel.getListObservable(it).observe(viewLifecycleOwner) {
@@ -62,37 +63,37 @@ class MapListFragment : Fragment() {
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBase,12f))
 
                         mMap.setOnMarkerClickListener { marker ->
-                            val carInfo: CarPreview = it.last { it.licensePlate == marker.title }
-                            _viewBinding!!.FirstConstraintData.visibility   = View.VISIBLE
-                            _viewBinding!!.secondConstraint.visibility      = View.VISIBLE
-                            _viewBinding!!.thirdConstraint.visibility       = View.VISIBLE
-                            _viewBinding!!.FirstViewLine.visibility         = View.VISIBLE
-                            _viewBinding!!.SecondViewLine.visibility        = View.VISIBLE
-                            _viewBinding!!.forthConstraint.visibility       = View.VISIBLE
+                            val carInfo: CarPreview = it.last { it ->
+                                it.licensePlate == marker.title }
+                            binding!!.FirstConstraintData.visibility   = View.VISIBLE
+                            binding!!.secondConstraint.visibility      = View.VISIBLE
+                            binding!!.thirdConstraint.visibility       = View.VISIBLE
+                            binding!!.FirstViewLine.visibility         = View.VISIBLE
+                            binding!!.SecondViewLine.visibility        = View.VISIBLE
+                            binding!!.forthConstraint.visibility       = View.VISIBLE
 
-                            _viewBinding!!.Attribute.text = getString(R.string.Attributes)
-                            _viewBinding!!.companyTextView.text = getString(R.string.make)
+                            binding!!.Attribute.text                = getString(R.string.Attributes)
+                            binding!!.companyTextView.text          = getString(R.string.make)
+                            binding!!.ModelTextView.text            = getString(R.string.name)
+                            binding!!.licensePlate.text             = getString(R.string.licensePlate)
+                            binding!!.colorTextView.text            = getString(R.string.Color)
+                            binding!!.fuelTypeTextView.text         = getString(R.string.fuelType)
+                            binding!!.innerCleanlinessTextView.text = getString(R.string.InnerCleanliness)
+                            binding!!.transmissionTextView.text     = getString(R.string.transmission)
+                            binding!!.fuelLevelTextView.text        = getString(R.string.fuelLevel)
 
-                            _viewBinding!!.ModelTextView.text            = getString(R.string.name)
-                            _viewBinding!!.licensePlate.text             = getString(R.string.licensePlate)
-                            _viewBinding!!.colorTextView.text            = getString(R.string.Color)
-                            _viewBinding!!.fuelTypeTextView.text         = getString(R.string.fuelType)
-                            _viewBinding!!.innerCleanlinessTextView.text = getString(R.string.InnerCleanliness)
-                            _viewBinding!!.transmissionTextView.text     = getString(R.string.transmission)
-                            _viewBinding!!.fuelLevelTextView.text        = getString(R.string.fuelLevel)
-
-                            Glide.with(_viewBinding!!.root).load(carInfo.carImageUrl).
+                            Glide.with(binding!!.root).load(carInfo.carImageUrl).
                             error(context?.getDrawable(R.drawable.caronmap))
-                                .into(_viewBinding!!.CarItemImageView)
+                                .into(binding!!.CarItemImageView)
 
-                            _viewBinding!!.model.text                    = carInfo.name
-                            _viewBinding!!.name.text                     = carInfo.make
-                            _viewBinding!!.licensePlateView.text         = carInfo.licensePlate
-                            _viewBinding!!.colorView.text                = carInfo.color
-                            _viewBinding!!.fuelTypeView.text             = Mapping().fuelTypeMapping(carInfo.fuelType)
-                            _viewBinding!!.innerCleanlinessView.text     = carInfo.innerCleanliness
-                            _viewBinding!!.transmissionView.text         = Mapping().transmissionMapping(carInfo.transmission)
-                            _viewBinding!!.fuelLevelView.text            = carInfo.fuelLevel
+                            binding!!.model.text                    = carInfo.name
+                            binding!!.name.text                     = carInfo.make
+                            binding!!.licensePlateView.text         = carInfo.licensePlate
+                            binding!!.colorView.text                = carInfo.color
+                            binding!!.fuelTypeView.text             = Mapping().fuelTypeMapping(carInfo.fuelType)
+                            binding!!.innerCleanlinessView.text     = carInfo.innerCleanliness
+                            binding!!.transmissionView.text         = Mapping().transmissionMapping(carInfo.transmission)
+                            binding!!.fuelLevelView.text            = carInfo.fuelLevel
                             false
                         }
                         progressDialog.dialog.dismiss()
@@ -102,10 +103,5 @@ class MapListFragment : Fragment() {
                 }
             }
         }
-
-
-
     }
-
-
 }

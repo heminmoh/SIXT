@@ -17,7 +17,7 @@ class SIXTProgressDialog {
 
      lateinit var dialog: CustomDialog
     @SuppressLint("InflateParams")
-    fun show(context : Context): Dialog {
+    fun show(context: Context): Dialog {
         val inflater = (context as Activity).layoutInflater
         val view = inflater.inflate(R.layout.progress_dialog_view, null)
         Glide.with(context).load(R.drawable.loading).into(view.progressbar1)
