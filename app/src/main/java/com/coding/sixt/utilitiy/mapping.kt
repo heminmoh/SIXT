@@ -11,7 +11,6 @@ class Mapping {
         if( transmissionResult == "null") {
             transmissionResult = "Manual"
         }
-
         return  transmissionResult
     }
 
@@ -22,7 +21,6 @@ class Mapping {
         if( fuelTypeResult == "null") {
             fuelTypeResult = "Gasoline"
         }
-
         return  fuelTypeResult
     }
 }

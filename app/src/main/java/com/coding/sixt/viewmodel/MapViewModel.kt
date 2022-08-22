@@ -17,6 +17,4 @@ class MapViewModel : ViewModel() {
      fun fetchCarDetails(carPreview: CarPreview) {
          recyclerLiveData.value = carPreview
     }
-
-
 }

@@ -17,16 +17,15 @@ import com.coding.sixt.viewmodel.CarViewModel
 
 
 class CarsFragment : Fragment() {
+
     private var _viewBinding: FragmentCarsBinding? = null
     private lateinit var carsRecyclerView: RecyclerView
     private lateinit var progressDialog : SIXTProgressDialog
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _viewBinding = FragmentCarsBinding.inflate(inflater, container, false)
         return _viewBinding!!.root
     }
@@ -48,9 +47,7 @@ class CarsFragment : Fragment() {
                 if (it != null) {
                     makeViewDesign(it)
                     progressDialog.dialog.dismiss()
-                } else {
-                    Toast.makeText(this.context,"NoDataFetched", Toast.LENGTH_SHORT).show()
-                }
+                } else { Toast.makeText(this.context,"NoDataFetched", Toast.LENGTH_SHORT).show()    }
                 progressDialog.dialog.dismiss()
             }
         }
@@ -60,7 +57,6 @@ class CarsFragment : Fragment() {
     {
         val adapter = CarsContentAdapter(hitsList)
         carsRecyclerView.adapter = adapter
-
     }
 
 }

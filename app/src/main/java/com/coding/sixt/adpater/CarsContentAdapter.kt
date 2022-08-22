@@ -13,14 +13,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.IdRes
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -41,7 +36,6 @@ class CarsContentAdapter  @Inject constructor (private val CarsContentList: List
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding = CarItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         context = parent.context
-//
         return ViewHolder(binding)
     }
 
@@ -54,6 +48,7 @@ class CarsContentAdapter  @Inject constructor (private val CarsContentList: List
     inner class ViewHolder(private val binding: CarItemBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("UseCompatLoadingForDrawables", "SetTextI18n")
         fun bind(item: CarPreview) {
+
             Glide.with(binding.root).load(item.carImageUrl).error(context?.getDrawable(R.drawable.caronmap))
                 .into(binding.CarItemImageView)
 

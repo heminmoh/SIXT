@@ -20,6 +20,4 @@ class CarViewModel() : ViewModel() {
         recyclerLiveData = CarRepositoryImp().makeApiCall(context)
         return recyclerLiveData
     }
-
-
 }
