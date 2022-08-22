@@ -73,12 +73,12 @@
             android:maxLines="1"
             android:textColor="@color/Orange"
             app:layout_constraintBaseline_toBaselineOf="@id/companyTextView"
-            app:layout_constraintEnd_toStartOf="@id/licensePlate"
+            app:layout_constraintEnd_toStartOf="@id/licensePlateTextView"
             app:layout_constraintStart_toEndOf="@id/companyTextView"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Model" />
         <TextView
-            android:id="@+id/licensePlate"
+            android:id="@+id/licensePlateTextView"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_marginEnd="8dp"
@@ -94,7 +94,7 @@
             tools:text="licensePlate" />
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/nameView"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_marginEnd="8dp"
@@ -105,14 +105,14 @@
             android:textColor="@color/black_transparent"
             android:maxLines="1"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/model"
+            app:layout_constraintEnd_toStartOf="@id/modelView"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="BMW" />
 
         <TextView
-            android:id="@+id/model"
+            android:id="@+id/modelView"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_marginEnd="8dp"
@@ -121,9 +121,9 @@
             android:maxLines="1"
             android:textStyle="bold"
             android:textColor="@color/black_transparent"
-            app:layout_constraintBaseline_toBaselineOf="@id/name"
+            app:layout_constraintBaseline_toBaselineOf="@id/nameView"
             app:layout_constraintEnd_toStartOf="@id/licensePlateView"
-            app:layout_constraintStart_toEndOf="@id/name"
+            app:layout_constraintStart_toEndOf="@id/nameView"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Second" />
 
@@ -137,9 +137,9 @@
             android:gravity="center"
             android:textStyle="bold"
             android:textColor="@color/black_transparent"
-            app:layout_constraintBaseline_toBaselineOf="@id/model"
+            app:layout_constraintBaseline_toBaselineOf="@id/modelView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/model"
+            app:layout_constraintStart_toEndOf="@id/modelView"
             tools:text="Third " />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <View
@@ -377,6 +377,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/connected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="@string/Connected"
+            android:textColor="#ff669900"
+            android:textSize="@dimen/connection"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/CarItemImageView"
+            android:visibility="gone"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            android:layout_marginBottom="50dp"
+            tools:layout_editor_absoluteY="699dp" />
+        <TextView
+            android:id="@+id/not_connected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="@string/NoConnection"
+            android:textColor="#ffcc0000"
+            android:textSize="@dimen/connection"
+            app:layout_constraintBottom_toBottomOf="@id/CarItemImageView"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="699dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

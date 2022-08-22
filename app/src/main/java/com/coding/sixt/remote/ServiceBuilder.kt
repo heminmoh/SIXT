@@ -10,10 +10,9 @@
 
 package com.coding.sixt.remote
 
-
-
 import android.content.Context
 import com.coding.sixt.utilitiy.CheckInternetConnection
+import com.coding.sixt.utilitiy.HelperSIXT
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -23,29 +22,26 @@ import javax.inject.Singleton
 @Singleton
  class ServiceBuilder (context: Context) {
 
-
-
-    private val cacheSize = (10 * 1024 * 1024).toLong()
-    private val myCache = Cache(context.cacheDir, cacheSize)
+    private val cacheObject= Cache(context.cacheDir, HelperSIXT.CACHE_SIZE)
     private val checkInternetConnection= CheckInternetConnection()
-    val url ="https://cdn.sixt.io/codingtask/"
-    private val okHttp =OkHttpClient.Builder().cache(myCache).addInterceptor{
+
+    private val okHttp = OkHttpClient.Builder().cache(cacheObject).addInterceptor{
         chain ->  var request = chain.request()
                  request = if (checkInternetConnection.checkForInternet(context))
             request.newBuilder().header("Cache-Control", "public, max-age=" + 4).build()
         else
             request.newBuilder().header(
                 "Cache-Control",
-                "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7
+                "public, only-if-cached, max-stale=" + HelperSIXT.WEEK_TIME
             ).build()
         chain.proceed(request)
     }
 
-    private val builder =Retrofit.Builder().baseUrl(url)
+    private val builder =Retrofit.Builder().baseUrl(HelperSIXT.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttp.build())
 
-    private val retrofit = builder.build()
+     val retrofit: Retrofit = builder.build()
 
     fun <T> buildService (serviceType :Class<T>):T{
         return retrofit.create(serviceType)

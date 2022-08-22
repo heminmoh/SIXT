@@ -12,28 +12,44 @@ import androidx.recyclerview.widget.RecyclerView
 import com.coding.sixt.adpater.CarsContentAdapter
 import com.coding.sixt.databinding.FragmentCarsBinding
 import com.coding.sixt.model.CarPreview
+import com.coding.sixt.utilitiy.LiveDataInternetConnections
 import com.coding.sixt.utilitiy.SIXTProgressDialog
 import com.coding.sixt.viewmodel.CarViewModel
+import javax.inject.Inject
 
 
 class CarsFragment : Fragment() {
 
-    private var _viewBinding: FragmentCarsBinding? = null
+    private var binding: FragmentCarsBinding? = null
     private lateinit var carsRecyclerView: RecyclerView
     private lateinit var progressDialog : SIXTProgressDialog
-
+    @Inject
+    lateinit var liveDataConnection : LiveDataInternetConnections
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _viewBinding = FragmentCarsBinding.inflate(inflater, container, false)
-        return _viewBinding!!.root
+        binding = FragmentCarsBinding.inflate(inflater, container, false)
+        return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        carsRecyclerView = _viewBinding?.CarsRecycler!!
+        liveDataConnection = activity?.let { LiveDataInternetConnections(it.application) }!!
+        carsRecyclerView = binding?.CarsRecycler!!
         carsRecyclerView.layoutManager = LinearLayoutManager(this.context)
+        binding?.connected?.visibility   = View.GONE
+        binding?.notConnected?.visibility = View.VISIBLE
+
+        liveDataConnection.observe(viewLifecycleOwner) { isConnected ->
+            if (isConnected) {
+                binding?.connected?.visibility   = View.GONE
+                binding?.notConnected?.visibility  = View.GONE
+            }else {
+                binding?.connected?.visibility   = View.GONE
+                binding?.notConnected?.visibility  = View.VISIBLE
+            }
+        }
         initViewModel()
     }
 

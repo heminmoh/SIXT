@@ -12,7 +12,7 @@ internal class ServiceBuilderTest
     fun testRetrofitInstance() {
         instrumentationContext = InstrumentationRegistry.getInstrumentation().targetContext
         val instance = ServiceBuilder(instrumentationContext)
-        print(instance.url)
-        Assert.assertEquals( instance.url,"https://cdn.sixt.io/codingtask/")
+        print(instance.retrofit.baseUrl())
+        Assert.assertEquals( instance.retrofit.baseUrl().toString(),"https://cdn.sixt.io/codingtask/")
     }
 }

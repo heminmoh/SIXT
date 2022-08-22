@@ -12,6 +12,8 @@ import com.bumptech.glide.Glide
 import com.coding.sixt.R
 import com.coding.sixt.databinding.FragmentMapListBinding
 import com.coding.sixt.model.CarPreview
+import com.coding.sixt.utilitiy.HelperSIXT
+import com.coding.sixt.utilitiy.LiveDataInternetConnections
 import com.coding.sixt.utilitiy.Mapping
 import com.coding.sixt.utilitiy.SIXTProgressDialog
 import com.coding.sixt.viewmodel.CarViewModel
@@ -21,6 +23,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import javax.inject.Inject
 
 
 class MapListFragment : Fragment() {
@@ -29,7 +32,8 @@ class MapListFragment : Fragment() {
     private var binding: FragmentMapListBinding? = null
     private lateinit var mMap : GoogleMap
     private var mapReady = false
-
+    @Inject
+    lateinit var liveDataConnection : LiveDataInternetConnections
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,14 +45,30 @@ class MapListFragment : Fragment() {
     @SuppressLint("PotentialBehaviorOverride", "UseCompatLoadingForDrawables", "SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        liveDataConnection = activity?.let { LiveDataInternetConnections(it.application) }!!
+        binding?.connected?.visibility   = View.GONE
+        binding?.notConnected?.visibility = View.VISIBLE
+
+        liveDataConnection.observe(viewLifecycleOwner) { isConnected ->
+            if (isConnected) {
+                binding?.connected?.visibility   = View.GONE
+                binding?.notConnected?.visibility  = View.GONE
+            }else {
+                binding?.connected?.visibility   = View.GONE
+                binding?.notConnected?.visibility  = View.VISIBLE
+            }
+        }
         progressDialog = SIXTProgressDialog()
         this.context?.let { progressDialog.show(it) }
+
         val mapFragment = binding?.mapFragment?.let {
             childFragmentManager.findFragmentById(it.id) } as SupportMapFragment
+
         val viewModel =  ViewModelProvider(this)[CarViewModel::class.java]
         this.context?.let { it ->
             viewModel.getListObservable(it).observe(viewLifecycleOwner) {
                 if (it != null) {
+                    binding!!.Attribute.visibility   = View.VISIBLE
                     val latLngBase = LatLng(it[0].latitude,it[0].longitude)
                     mapFragment.getMapAsync {
                             googleMap -> mMap = googleMap
@@ -65,6 +85,7 @@ class MapListFragment : Fragment() {
                         mMap.setOnMarkerClickListener { marker ->
                             val carInfo: CarPreview = it.last { it ->
                                 it.licensePlate == marker.title }
+
                             binding!!.FirstConstraintData.visibility   = View.VISIBLE
                             binding!!.secondConstraint.visibility      = View.VISIBLE
                             binding!!.thirdConstraint.visibility       = View.VISIBLE
@@ -99,7 +120,7 @@ class MapListFragment : Fragment() {
                         progressDialog.dialog.dismiss()
                     }
                 } else {
-                    Toast.makeText(this.context,"NoDataFetched", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this.context,HelperSIXT.NoDataFetched, Toast.LENGTH_SHORT).show()
                 }
             }
         }

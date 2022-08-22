@@ -13,6 +13,8 @@ import com.bumptech.glide.Glide
 import com.coding.sixt.R
 import com.coding.sixt.databinding.FragmentMapBinding
 import com.coding.sixt.model.CarPreview
+import com.coding.sixt.utilitiy.HelperSIXT
+import com.coding.sixt.utilitiy.LiveDataInternetConnections
 import com.coding.sixt.utilitiy.Mapping
 import com.coding.sixt.utilitiy.SIXTProgressDialog
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -21,6 +23,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import javax.inject.Inject
 
 
 class MapFragment : Fragment() {
@@ -30,7 +33,8 @@ class MapFragment : Fragment() {
     private lateinit var navController : NavController
     private var mapReady = false
     private var hitObject : CarPreview? = null
-
+    @Inject
+    lateinit var liveDataConnection : LiveDataInternetConnections
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,10 +46,24 @@ class MapFragment : Fragment() {
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        liveDataConnection = activity?.let { LiveDataInternetConnections(it.application) }!!
         progressDialog = SIXTProgressDialog()
         this.context?.let { progressDialog.show(it) }
         navController = Navigation.findNavController(view)
-        hitObject = this.arguments?.getParcelable("object")
+        hitObject = this.arguments?.getParcelable(HelperSIXT.CAR_OBJECT_BUNDLE)
+
+        binding?.connected?.visibility   = View.GONE
+        binding?.notConnected?.visibility = View.VISIBLE
+
+        liveDataConnection.observe(viewLifecycleOwner) { isConnected ->
+            if (isConnected) {
+                binding?.connected?.visibility   = View.GONE
+                binding?.notConnected?.visibility  = View.GONE
+            }else {
+                binding?.connected?.visibility   = View.GONE
+                binding?.notConnected?.visibility  = View.VISIBLE
+            }
+        }
 
         val mapFragment = binding?.mapFragment?.let {
             childFragmentManager.findFragmentById(it.id) } as SupportMapFragment
@@ -71,7 +89,7 @@ class MapFragment : Fragment() {
 
                 binding!!.companyTextView.text           = getString(R.string.make)
                 binding!!.ModelTextView.text             = getString(R.string.name)
-                binding!!.licensePlate.text              = getString(R.string.licensePlate)
+                binding!!.licensePlateTextView.text      = getString(R.string.licensePlate)
                 binding!!.colorTextView.text             = getString(R.string.Color)
                 binding!!.fuelTypeTextView.text          = getString(R.string.fuelType)
                 binding!!.innerCleanlinessTextView.text  = getString(R.string.InnerCleanliness)
@@ -82,8 +100,8 @@ class MapFragment : Fragment() {
                 error(context?.getDrawable(R.drawable.caronmap))
                     .into(binding!!.CarItemImageView)
 
-                binding!!.model.text                = hitObject?.name
-                binding!!.name.text                 = hitObject?.make
+                binding!!.modelView.text            = hitObject?.name
+                binding!!.nameView.text             = hitObject?.make
                 binding!!.licensePlateView.text     = hitObject?.licensePlate
                 binding!!.colorView.text            = hitObject?.color
                 binding!!.fuelTypeView.text         = Mapping().fuelTypeMapping(hitObject?.fuelType.toString())
@@ -105,4 +123,3 @@ class MapFragment : Fragment() {
 }
 
 
-//        https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=YOUR_API_KEY

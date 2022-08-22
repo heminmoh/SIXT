@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide
 import com.coding.sixt.R
 import com.coding.sixt.databinding.CarItemBinding
 import com.coding.sixt.model.CarPreview
+import com.coding.sixt.utilitiy.HelperSIXT
 import com.coding.sixt.utilitiy.Mapping
 import javax.inject.Inject
 
@@ -49,12 +50,11 @@ class CarsContentAdapter  @Inject constructor (private val CarsContentList: List
     inner class ViewHolder(private val binding: CarItemBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("UseCompatLoadingForDrawables", "SetTextI18n")
         fun bind(item: CarPreview) {
-
             Glide.with(binding.root).load(item.carImageUrl).error(context?.getDrawable(R.drawable.caronmap))
                 .into(binding.CarItemImageView)
 
-            binding.make.text = item.make + " | "+ item.modelIdentifier
-            binding.modelname.text = "or similar | "+item.modelName
+            binding.make.text = item.make + " | "+ item.series
+            binding.modelName.text = "or similar | "+item.modelName
             binding.name.text = item.name
             binding.transmissionView.text = (context?.getString(R.string.transmission)) + " : " + Mapping().transmissionMapping(item.transmission)
             binding.fuelTypeView.text     = (context?.getString(R.string.fuelType)) + " : " + Mapping().fuelTypeMapping(item.fuelType)
@@ -62,7 +62,7 @@ class CarsContentAdapter  @Inject constructor (private val CarsContentList: List
             binding.root.setOnClickListener {
                 navController = findNavController(binding.root)
                 val bundle = Bundle()
-                bundle.putParcelable("object", item)
+                bundle.putParcelable(HelperSIXT.CAR_OBJECT_BUNDLE, item)
                 navController.navigate(R.id.mapFragment,bundle)
             }
         }
@@ -72,7 +72,7 @@ class CarsContentAdapter  @Inject constructor (private val CarsContentList: List
                 oldItem: CarPreview,
                 newItem: CarPreview
             ): Boolean {
-                return oldItem.name == newItem.name
+                return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(

@@ -16,5 +16,8 @@
     </string>
     <string name="group">Group</string>
     <string name="map">Map</string>
+    <string name="NoConnection">No Connection</string>
+    <string name="Connected">Connected</string>
     <string name="touch_car_for_details">Touch car For Details…</string>
+    <string name="please_wait">Please wait…</string>
 </resources>

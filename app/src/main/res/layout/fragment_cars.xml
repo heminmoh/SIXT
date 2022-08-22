@@ -34,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="110dp"
+        android:layout_marginBottom="50dp"
         android:background="@color/black_transparent"
         android:paddingLeft="3dp"
         android:paddingRight="3dp"
@@ -41,6 +42,37 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-
+    <TextView
+        android:id="@+id/connected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="@string/Connected"
+        android:textColor="#ff669900"
+        android:textSize="@dimen/connection"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/CarsRecycler"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_marginBottom="50dp"
+        tools:layout_editor_absoluteY="699dp" />
+    <TextView
+        android:id="@+id/not_connected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="@string/NoConnection"
+        android:textColor="#ffcc0000"
+        android:textSize="@dimen/connection"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_marginBottom="50dp"
+        tools:layout_editor_absoluteY="699dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

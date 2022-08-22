@@ -20,7 +20,7 @@ class SIXTProgressDialog {
     fun show(context: Context): Dialog {
         val inflater = (context as Activity).layoutInflater
         val view = inflater.inflate(R.layout.progress_dialog_view, null)
-        Glide.with(context).load(R.drawable.loading).into(view.progressbar1)
+        Glide.with(context).load(R.drawable.loading).into(view.progressbar)
         dialog = CustomDialog(context)
         dialog.setContentView(view)
         dialog.show()
