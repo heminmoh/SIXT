@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.coding.sixt.adpater.CarsContentAdapter
 import com.coding.sixt.databinding.FragmentCarsBinding
 import com.coding.sixt.model.CarPreview
@@ -22,6 +23,7 @@ class CarsFragment : Fragment() {
 
     private var binding: FragmentCarsBinding? = null
     private lateinit var carsRecyclerView: RecyclerView
+    private var swipeToRefresh: SwipeRefreshLayout? = null
     private lateinit var progressDialog : SIXTProgressDialog
     @Inject
     lateinit var liveDataConnection : LiveDataInternetConnections
@@ -51,8 +53,22 @@ class CarsFragment : Fragment() {
             }
         }
         initViewModel()
-    }
 
+
+        binding!!.swipeToRefresh.setOnRefreshListener {
+
+            initViewModel()
+            binding!!.swipeToRefresh.isRefreshing = false
+        }
+
+    }
+//    private fun setupSwipeToRefresh() {
+//        swipeToRefresh = binding?.swipeToRefresh
+//        swipeToRefresh?.setOnRefreshListener {
+//            swipeToRefresh?.isRefreshing = true
+//            view_model.loadBreeds()
+//        }
+//    }
     private fun initViewModel()
     {
         progressDialog = SIXTProgressDialog()

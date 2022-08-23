@@ -29,18 +29,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/CarsRecycler"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_to_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="110dp"
         android:layout_marginBottom="50dp"
+        app:layout_constraintTop_toTopOf="@+id/SecondViewLine">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/CarsRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+
         android:background="@color/black_transparent"
         android:paddingLeft="3dp"
         android:paddingRight="3dp"
         tools:listitem="@layout/car_item">
-
     </androidx.recyclerview.widget.RecyclerView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <TextView
         android:id="@+id/connected"
@@ -52,7 +59,7 @@
         android:textColor="#ff669900"
         android:textSize="@dimen/connection"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/CarsRecycler"
+        app:layout_constraintBottom_toBottomOf="@id/swipe_to_refresh"
         android:visibility="gone"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
