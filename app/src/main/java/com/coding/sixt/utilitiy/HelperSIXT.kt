@@ -1,6 +1,10 @@
+/**
+ * Using Helper as a way to definition Constants which will be used in project
+ * 2022-08-20 1900
+ */
+
 package com.coding.sixt.utilitiy
 
-import okhttp3.Cache
 
 object HelperSIXT {
   const val BASE_URL = "https://cdn.sixt.io/codingtask/"

@@ -1,7 +1,7 @@
 /**
- * IHitRepository is an interface for HitRepositoryImp class
+ * ICarRepository is an interface for CarRepositoryImp class
  * class call Api by coroutine method
- *  2022-06-18  12:37
+ *  2022-06-18  22:00
  */
 
 package com.coding.sixt.repositorymodel

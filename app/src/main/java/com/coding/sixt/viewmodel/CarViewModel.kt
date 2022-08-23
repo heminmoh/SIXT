@@ -1,7 +1,8 @@
 /**
- * getListObservable is a function in HitViewModel that take context and searched data
- * and return  LiveData<HitModel> object
- * 2022-06-18 18:00
+ * getListObservable is a function
+ * that return list  of CarPreview objects  LiveData<CarPreview>
+ * as a ViewModel responsibility to providing data for View.
+ * 2022-08-19 18:00
  */
 
 package com.coding.sixt.viewmodel

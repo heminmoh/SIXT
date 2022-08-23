@@ -1,12 +1,9 @@
-
 /**
  * This class build a retrofit Api interface
- * okHttp  has the cache ability equals to 'cacheSize' variable
+ * okHttp  has the cache ability equals to cacheObject 'cacheSize' variable
  *  an HTTP annotation that provides the request method and relative URL
- *  2022-06-17  16:37
+ *  2022-08-18  19:30
  */
-
-
 
 package com.coding.sixt.remote
 

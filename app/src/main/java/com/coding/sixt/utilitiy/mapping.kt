@@ -1,3 +1,9 @@
+
+/**
+* Mapping transmission and fuelType data to to give meaning of different words and sign to user.
+ * 2022-08-21 21:00
+ */
+
 package com.coding.sixt.utilitiy
 
 class Mapping {

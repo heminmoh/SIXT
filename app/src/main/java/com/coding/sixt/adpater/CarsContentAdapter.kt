@@ -1,9 +1,9 @@
 /**
- * HitsContentsAdapter
- * display the Hits items by this Adapter
- * Data bound to HitItemBinding by HitViewHolder
- * in section onBindViewHolder when user click on item an object send to another activity by intent
- * 2022-06-18 21:35
+ * CarsContentAdapter
+ * display the CarPreview items by this Adapter
+ * Data binding in ViewHolder
+ * in section onBindViewHolder when user click on item, the object send to MapFragment as Bundle
+ * * 2022-06-22 21:35
  */
 
 

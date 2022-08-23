@@ -1,7 +1,8 @@
 /**
  * an interface to provide HTTP request
  *  HTTP annotation  provides the request method and relative URL
- * 2022-06-17 12:00
+ *  It returns a list od objects (CarPreView)
+ * 2022-08-18 2030
  */
 
 package com.coding.sixt.remote

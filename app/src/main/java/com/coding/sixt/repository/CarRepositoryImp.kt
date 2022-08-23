@@ -1,18 +1,20 @@
 /**
- * HitRepositoryImp is an class call Api by  Coroutine method
- * take an id which is the search key and return a MutableLiveData<HitModel>
- *  2022-06-18  15:37
+ * CarRepositoryImp is an class call Api by  Coroutine method
+ * take an id which is the search key and return a MutableLiveData<CarPreview>
+ *  2022-06-18  2100
  */
 package com.coding.sixt.repository
 
 import android.content.Context
 import android.os.Build
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import com.coding.sixt.model.CarPreview
 import com.coding.sixt.remote.APIInterface
 import com.coding.sixt.remote.ServiceBuilder
 import com.coding.sixt.repositorymodel.ICarRepository
+import com.coding.sixt.utilitiy.HelperSIXT
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -39,6 +41,7 @@ class CarRepositoryImp :  ICarRepository {
                     }
                 }
                 override fun onFailure(call: retrofit2.Call<List<CarPreview>>, t: Throwable) {
+                    Toast.makeText(context.applicationContext, HelperSIXT.NoDataFetched, Toast.LENGTH_SHORT).show()
                 }
             })
         }

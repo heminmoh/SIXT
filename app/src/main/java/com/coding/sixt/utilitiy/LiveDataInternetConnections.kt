@@ -1,11 +1,10 @@
-package com.coding.sixt.utilitiy
 /**
  * this class make a LiveData Check for Checking Network Access on Device
- *
  *  Class return a LiveData Boolean which show you the network status
- *
- * 2022-08-18 2030
+ * 2022-08-21 20:30
  */
+package com.coding.sixt.utilitiy
+
 import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager

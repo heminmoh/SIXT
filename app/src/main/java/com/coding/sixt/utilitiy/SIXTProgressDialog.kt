@@ -1,7 +1,6 @@
 /**
  * Custom Progress Dialog
- * specify with PayBack Logo
- * 2022-06-18 11:00
+ * 2022-08-18 15:00
  */
 package com.coding.sixt.utilitiy
 
