@@ -50,7 +50,7 @@ class CarsContentAdapter  @Inject constructor (private val CarsContentList: List
     inner class ViewHolder(private val binding: CarItemBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("UseCompatLoadingForDrawables", "SetTextI18n")
         fun bind(item: CarPreview) {
-            Glide.with(binding.root).load(item.carImageUrl).error(context?.getDrawable(R.drawable.caronmap))
+            Glide.with(binding.root).load(item.carImageUrl).error(context?.getDrawable(R.drawable.fallbackimage))
                 .into(binding.CarItemImageView)
 
             binding.make.text = item.make + " | "+ item.series

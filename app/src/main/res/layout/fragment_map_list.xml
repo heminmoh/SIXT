@@ -17,9 +17,6 @@
             android:background="@android:color/transparent"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             tools:ignore="MissingConstraints" />
-
-
-
         <TextView
             android:id="@+id/Attribute"
             android:layout_width="wrap_content"
@@ -40,7 +37,6 @@
             tools:ignore="MissingConstraints,RtlSymmetry">
 
         </TextView>
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/FirstConstraintData"
             android:layout_width="match_parent"

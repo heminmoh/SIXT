@@ -97,7 +97,7 @@ class MapFragment : Fragment() {
                 binding!!.fuelLevelTextView.text         = getString(R.string.fuelLevel)
 
                 Glide.with(binding!!.root).load(hitObject?.carImageUrl).
-                error(context?.getDrawable(R.drawable.caronmap))
+                error(context?.getDrawable(R.drawable.fallbackimage))
                     .into(binding!!.CarItemImageView)
 
                 binding!!.modelView.text            = hitObject?.name
@@ -107,7 +107,7 @@ class MapFragment : Fragment() {
                 binding!!.fuelTypeView.text         = Mapping().fuelTypeMapping(hitObject?.fuelType.toString())
                 binding!!.innerCleanlinessView.text = hitObject?.innerCleanliness
                 binding!!.transmissionView.text     = Mapping().transmissionMapping(hitObject?.transmission.toString())
-                binding!!.fuelLevelView.text        = hitObject?.fuelLevel
+                binding!!.fuelLevelView.text        = hitObject?.fuelLevel.toString()
             }
             progressDialog.dialog.dismiss()
 

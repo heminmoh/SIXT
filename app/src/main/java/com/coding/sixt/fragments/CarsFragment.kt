@@ -78,7 +78,7 @@ class CarsFragment : Fragment() {
         }
     }
 
-    private fun makeViewDesign(hitsList : List<CarPreview>)
+     fun makeViewDesign(hitsList : List<CarPreview>)
     {
         val adapter = CarsContentAdapter(hitsList)
         carsRecyclerView.adapter = adapter

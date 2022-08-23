@@ -14,34 +14,12 @@ data class CarPreview(
     val color: String,
     val series: String,
     val fuelType: String,
-    val fuelLevel: String,
+    val fuelLevel: Double,
     val transmission: String,
     val licensePlate: String,
     val latitude: Double,
     val longitude: Double,
     val innerCleanliness: String,
     val carImageUrl: String
-) : Parcelable {
-
-    companion object {
-        val EMPTY = CarPreview(
-            id = "123465",
-            modelIdentifier = "empty",
-            modelName = "none",
-            name = "none",
-            make = "placeholder",
-            group = "placeholder",
-            color = "placeholder",
-            series = "placeholder",
-            fuelType = "placeholder",
-            fuelLevel = "placeholder",
-            transmission = "placeholder",
-            licensePlate = "placeholder",
-            latitude = 0.0,
-            longitude = 0.0,
-            innerCleanliness = "placeholder",
-            carImageUrl = "placeholder"
-        )
-    }
-}
+) : Parcelable
 
