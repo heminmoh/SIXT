@@ -1,3 +1,10 @@
+/**
+ * MainActivity
+ * the major Activity includes two majors fragment as MapListFragment and CarsFragment
+ * in app as the first view for user
+ * ActivityMain bind to this Activity and Fragments showed and replaced by bottomNavigationView
+ * * 2022-08-22 23:15
+ */
 package com.coding.sixt.fragments
 
 import android.os.Bundle

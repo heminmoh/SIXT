@@ -1,3 +1,11 @@
+/**
+ * MapListFragment
+ * this Fragment designed as another way to show items.
+ * in the first one in CarsFragment we represent items as  a List
+ * and in this Fragment Data show as multiple points on Google Map.
+ * connection will be checked with liveDataConnection
+ * * 2022-08-23 22:20
+ */
 package com.coding.sixt.fragments
 
 import android.annotation.SuppressLint

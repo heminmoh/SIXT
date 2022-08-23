@@ -1,3 +1,10 @@
+/**
+ * MapFragment
+ * this Fragment designed as a detail for items that user want to know about more.
+ * connection will be checked with liveDataConnection
+ * we don't call api to get details but give data as a bundle from CarsFragment
+ * * 2022-08-23 19:20
+ */
 package com.coding.sixt.fragments
 
 import android.annotation.SuppressLint

@@ -1,3 +1,12 @@
+/**
+ * CarsFragment
+ * the major fragment in app as the first view for user
+ * connection will be checked with liveDataConnection
+ * use getObserve to call api in viewModel and represent data to CarsContentAdapter
+ * * 2022-08-22 21:35
+ */
+
+
 package com.coding.sixt.fragments
 
 import android.os.Bundle

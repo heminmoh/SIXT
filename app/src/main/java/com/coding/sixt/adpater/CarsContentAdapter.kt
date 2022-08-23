@@ -3,7 +3,7 @@
  * display the CarPreview items by this Adapter
  * Data binding in ViewHolder
  * in section onBindViewHolder when user click on item, the object send to MapFragment as Bundle
- * * 2022-06-22 21:35
+ * * 2022-08-22 21:35
  */
 
 
