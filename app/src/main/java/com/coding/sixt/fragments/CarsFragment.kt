@@ -23,7 +23,6 @@ class CarsFragment : Fragment() {
 
     private var binding: FragmentCarsBinding? = null
     private lateinit var carsRecyclerView: RecyclerView
-    private var swipeToRefresh: SwipeRefreshLayout? = null
     private lateinit var progressDialog : SIXTProgressDialog
     @Inject
     lateinit var liveDataConnection : LiveDataInternetConnections
@@ -56,19 +55,13 @@ class CarsFragment : Fragment() {
 
 
         binding!!.swipeToRefresh.setOnRefreshListener {
-
-            initViewModel()
             binding!!.swipeToRefresh.isRefreshing = false
+            initViewModel()
+
         }
 
     }
-//    private fun setupSwipeToRefresh() {
-//        swipeToRefresh = binding?.swipeToRefresh
-//        swipeToRefresh?.setOnRefreshListener {
-//            swipeToRefresh?.isRefreshing = true
-//            view_model.loadBreeds()
-//        }
-//    }
+
     private fun initViewModel()
     {
         progressDialog = SIXTProgressDialog()

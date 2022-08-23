@@ -4,7 +4,7 @@ package com.coding.sixt.utilitiy
  *
  *  Class return a LiveData Boolean which show you the network status
  *
- * 2022-06-17 12:00
+ * 2022-08-18 2030
  */
 import android.app.Application
 import android.content.Context

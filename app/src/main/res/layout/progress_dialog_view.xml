@@ -10,9 +10,9 @@
     app:layout_constraintTop_toTopOf="parent">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:cardCornerRadius="16dp"
+        android:layout_width="@dimen/ProgressViewLayoutWH"
+        android:layout_height="@dimen/ProgressViewLayoutWH"
+        app:cardCornerRadius="@dimen/ProgressViewCardCornerRadius"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
         android:background="@color/gray_600"
@@ -41,9 +41,9 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginStart="@dimen/ProgressViewTextViewMarginRL"
+                android:layout_marginEnd="@dimen/ProgressViewTextViewMarginRL"
+                android:layout_marginBottom="@dimen/ProgressViewTextViewMarginBottom"
                 android:text="@string/please_wait"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
@@ -58,33 +58,3 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    android:layout_centerInParent="true"-->
-<!--    android:visibility="visible"-->
-<!--    android:layout_centerHorizontal="true"-->
-<!--    android:layout_centerVertical="true"-->
-<!--    android:background="@android:color/transparent"-->
-<!--    tools:context=".fragments.MainActivity">-->
-
-
-<!--    <ImageView-->
-<!--        android:id="@+id/progressbar1"-->
-<!--        android:layout_width="180dp"-->
-<!--        android:layout_height="80dp"-->
-<!--        android:src="@drawable/loading"/>-->
-
-<!--    <TextView-->
-<!--        android:layout_width="180dp"-->
-<!--        android:layout_height="80dp"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:layout_marginTop="80dp"-->
-<!--        android:gravity="center"-->
-<!--        android:visibility="visible"-->
-<!--        app:layout_constraintTop_toTopOf="@id/progressbar1" />-->
-
-
-<!--</RelativeLayout>-->

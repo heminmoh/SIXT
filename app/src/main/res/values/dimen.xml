@@ -1,11 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="HeaderSections">18sp</dimen>
-    <dimen name="username">16sp</dimen>
-    <dimen name="SearchTextView">16sp</dimen>
-    <dimen name="tag">16sp</dimen>
     <dimen name="connection">16sp</dimen>
     <dimen name="title">20sp</dimen>
+    <dimen name="CardViewTextSize">13sp</dimen>
+    <dimen name="MapFTextSize">13sp</dimen>
+    <dimen name="MapFTextSizeSmaller">11sp</dimen>
+    <dimen name="MapFAttributeTextSize">23sp</dimen>
+    <dimen name="MapLFAttributeTextSize">23sp</dimen>
+    <dimen name="bottomNavigationHeight">50dp</dimen>
+    <dimen name="CardViewHeight">200dp</dimen>
+    <dimen name="MapFTextViewMarginRL">8dp</dimen>
+    <dimen name="ProgressViewLayoutWH">150dp</dimen>
+    <dimen name="ProgressViewCardCornerRadius">16dp</dimen>
+    <dimen name="ProgressViewTextViewMarginRL">8dp</dimen>
+    <dimen name="ProgressViewTextViewMarginBottom">8dp</dimen>
+    <dimen name="MapFViewLineMarginRL">15dp</dimen>
+    <dimen name="MapFViewLineMarginTop">80dp</dimen>
+    <dimen name="MapFViewLineMarginBottom">40dp</dimen>
+    <dimen name="MapFViewLineHeight">1dp</dimen>
+    <dimen name="MapFTextViewConstraintHeight">40dp</dimen>
+    <dimen name="MapLFTextViewConstraintHeight">40dp</dimen>
+    <dimen name="MapLFTextView_layout_marginBottom">120dp</dimen>
+    <dimen name="MapLFTextViewHeight">20dp</dimen>
+    <dimen name="MapLFTextViewConstraintMarginBottom">40dp</dimen>
+    <dimen name="MapLFTextViewPaddingStart">10dp</dimen>
+    <dimen name="MapLFTextViewMarginES">8dp</dimen>
+    <dimen name="MapLFTextViewPaddingEnd">8dp</dimen>
+    <dimen name="MapFTextViewAttributeHeight">40dp</dimen>
+    <dimen name="MapFTextViewAttributeMarginTop">450dp</dimen>
+    <dimen name="MapFTextViewAttributePaddingStart">50dp</dimen>
+    <dimen name="MapFTextViewHeight">20dp</dimen>
+    <dimen name="MapFTextViewMarginTop">20dp</dimen>
+    <dimen name="CarImageViewMarginTop">5dp</dimen>
+    <dimen name="ImageViewOnTopCarsFragHeight">100dp</dimen>
+    <dimen name="ConstraintSizeImageHeight">120dp</dimen>
+    <dimen name="SwipeRefreshLayoutMarginTop">110dp</dimen>
+    <dimen name="SwipeRefreshLayoutMarginBottom">50dp</dimen>
+    <dimen name="ViewLineHeight">10dp</dimen>
+    <dimen name="PaddingLRRecycler">10dp</dimen>
+    <dimen name="layout_editor_Y">699dp</dimen>
+    <dimen name="TextViewCardViewHeight">25dp</dimen>
+    <dimen name="TextViewModelInCardViewHeight">35dp</dimen>
+    <dimen name="TextViewMarginInCardViewHeight">15dp</dimen>
+    <dimen name="TextViewTextSizeModelInCardView">18sp</dimen>
+    <dimen name="TextViewMarginRLInCardView">15dp</dimen>
+    <dimen name="TextViewMarginTopInCardView">45dp</dimen>
+    <dimen name="TextViewDetailMarginTopInCardView">25dp</dimen>
 
 
 
