@@ -22,6 +22,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.coding.sixt.adpater.CarsContentAdapter
 import com.coding.sixt.databinding.FragmentCarsBinding
 import com.coding.sixt.model.CarPreview
+import com.coding.sixt.utilitiy.HelperSIXT
 import com.coding.sixt.utilitiy.LiveDataInternetConnections
 import com.coding.sixt.utilitiy.SIXTProgressDialog
 import com.coding.sixt.viewmodel.CarViewModel
@@ -60,13 +61,18 @@ class CarsFragment : Fragment() {
                 binding?.notConnected?.visibility  = View.VISIBLE
             }
         }
-        initViewModel()
+        try {
+            initViewModel()
+        } catch (e: RuntimeException) {
+            Toast.makeText(this.context,HelperSIXT.CallAgain, Toast.LENGTH_SHORT).show()            }
 
 
         binding!!.swipeToRefresh.setOnRefreshListener {
             binding!!.swipeToRefresh.isRefreshing = false
-            initViewModel()
-
+            try {
+                initViewModel()
+            } catch (e: RuntimeException) {
+                Toast.makeText(this.context,HelperSIXT.CallAgain, Toast.LENGTH_SHORT).show()            }
         }
 
     }
@@ -81,16 +87,24 @@ class CarsFragment : Fragment() {
                 if (it != null) {
                     makeViewDesign(it)
                     progressDialog.dialog.dismiss()
-                } else { Toast.makeText(this.context,"NoDataFetched", Toast.LENGTH_SHORT).show()    }
-                progressDialog.dialog.dismiss()
+                } else {
+                    Toast.makeText(this.context,HelperSIXT.NoDataFetched, Toast.LENGTH_SHORT).show()
+                      progressDialog.dialog.dismiss()
+                       }
             }
         }
     }
 
-     fun makeViewDesign(hitsList : List<CarPreview>)
+    private fun makeViewDesign(hitsList : List<CarPreview>)
     {
-        val adapter = CarsContentAdapter(hitsList)
-        carsRecyclerView.adapter = adapter
+        try {
+            val adapter = CarsContentAdapter(hitsList)
+            carsRecyclerView.adapter = adapter
+        }catch (e : InterruptedException)
+        {
+            Toast.makeText(this.context,HelperSIXT.CallAgain, Toast.LENGTH_SHORT).show()
+        }
+
     }
 
 }

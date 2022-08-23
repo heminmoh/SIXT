@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/rounded_itemlist"
+    android:background="@drawable/rounded_item_list"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:layoutDirection="rtl"
         android:textAlignment="center"
-        android:background="@drawable/rounded_itemlist"
+        android:background="@drawable/rounded_item_list"
         android:focusable="true"
         tools:ignore="MissingConstraints">
 
@@ -24,7 +24,6 @@
             android:id="@+id/make"
             android:layout_width="0dp"
             android:layout_height="@dimen/TextViewModelInCardViewHeight"
-            android:text=""
             android:textDirection="ltr"
             android:gravity="center"
             android:background="@drawable/rounded_textview"
@@ -33,8 +32,8 @@
             android:textStyle="bold"
             android:textSize="@dimen/TextViewTextSizeModelInCardView"
             android:lines="1"
-            android:paddingStart="3dp"
-            android:paddingEnd="3dp"
+            android:paddingStart="@dimen/CardViewPaddingES"
+            android:paddingEnd="@dimen/CardViewPaddingES"
             android:layout_margin="@dimen/TextViewMarginInCardViewHeight"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.4"
@@ -42,10 +41,9 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
         <TextView
-            android:id="@+id/modelName"
+            android:id="@+id/group"
             android:layout_width="0dp"
             android:layout_height="@dimen/TextViewCardViewHeight"
-            android:text=""
             android:gravity="left"
             android:layout_marginTop="@dimen/TextViewMarginTopInCardView"
             android:layout_marginLeft="@dimen/TextViewMarginRLInCardView"
@@ -63,7 +61,6 @@
             android:id="@+id/name"
             android:layout_width="0dp"
             android:layout_height="@dimen/TextViewCardViewHeight"
-            android:text=""
             android:gravity="left"
             android:layout_marginTop="@dimen/TextViewDetailMarginTopInCardView"
             android:layout_marginLeft="@dimen/TextViewMarginRLInCardView"
@@ -75,13 +72,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toEndOf="@+id/CarItemImageView"
-            app:layout_constraintTop_toTopOf="@id/modelName"
+            app:layout_constraintTop_toTopOf="@id/group"
             tools:ignore="MissingConstraints,RtlHardcoded" />
         <TextView
             android:id="@+id/transmissionView"
             android:layout_width="0dp"
             android:layout_height="@dimen/TextViewCardViewHeight"
-            android:text=""
             android:gravity="left"
             android:layout_marginTop="@dimen/TextViewDetailMarginTopInCardView"
             android:layout_marginLeft="@dimen/TextViewMarginRLInCardView"
@@ -99,7 +95,6 @@
             android:id="@+id/fuelTypeView"
             android:layout_width="0dp"
             android:layout_height="@dimen/TextViewCardViewHeight"
-            android:text=""
             android:gravity="left"
             android:layout_marginTop="@dimen/TextViewDetailMarginTopInCardView"
             android:layout_marginLeft="@dimen/TextViewMarginRLInCardView"

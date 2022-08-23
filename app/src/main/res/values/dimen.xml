@@ -33,6 +33,7 @@
     <dimen name="MapFTextViewHeight">20dp</dimen>
     <dimen name="MapFTextViewMarginTop">20dp</dimen>
     <dimen name="CarImageViewMarginTop">5dp</dimen>
+    <dimen name="CardViewPaddingES">3dp</dimen>
     <dimen name="ImageViewOnTopCarsFragHeight">100dp</dimen>
     <dimen name="ConstraintSizeImageHeight">120dp</dimen>
     <dimen name="SwipeRefreshLayoutMarginTop">110dp</dimen>

@@ -12,4 +12,6 @@ object HelperSIXT {
   const val WEEK_TIME = 60 * 60 * 24 * 7
   const val CAR_OBJECT_BUNDLE =  "object"
   const val NoDataFetched =  "NoDataFetched"
+  const val CallAgain =  "NoDataFetched - Please Do It Again"
+  const val Similar =  "or similar | "
 }

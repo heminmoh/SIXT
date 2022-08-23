@@ -53,8 +53,8 @@ class CarsContentAdapter  @Inject constructor (private val CarsContentList: List
             Glide.with(binding.root).load(item.carImageUrl).error(context?.getDrawable(R.drawable.fallbackimage))
                 .into(binding.CarItemImageView)
 
-            binding.make.text = item.make + " | "+ item.series
-            binding.modelName.text = "or similar | "+item.modelName
+            binding.make.text = item.make + " | " + item.series
+            binding.group.text = HelperSIXT.Similar +item.group
             binding.name.text = item.name
             binding.transmissionView.text = (context?.getString(R.string.transmission)) + " : " + Mapping().transmissionMapping(item.transmission)
             binding.fuelTypeView.text     = (context?.getString(R.string.fuelType)) + " : " + Mapping().fuelTypeMapping(item.fuelType)
