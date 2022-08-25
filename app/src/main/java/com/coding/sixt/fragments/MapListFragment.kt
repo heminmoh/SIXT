@@ -14,8 +14,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.coding.sixt.R
 import com.coding.sixt.databinding.FragmentMapListBinding
@@ -38,6 +41,7 @@ class MapListFragment : Fragment() {
 
     private lateinit var progressDialog : SIXTProgressDialog
     private var binding: FragmentMapListBinding? = null
+    private lateinit var navController : NavController
     private lateinit var mMap : GoogleMap
     private var mapReady = false
     @Inject
@@ -54,6 +58,7 @@ class MapListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         liveDataConnection = activity?.let { LiveDataInternetConnections(it.application) }!!
+        navController = Navigation.findNavController(view)
         binding?.connected?.visibility   = View.GONE
         binding?.notConnected?.visibility = View.VISIBLE
 
@@ -132,5 +137,16 @@ class MapListFragment : Fragment() {
                 }
             }
         }
+
+
+
+        requireActivity().onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true)
+            {
+                override fun handleOnBackPressed() {
+                    val bundle = Bundle()
+                    navController.navigate(R.id.carsFragment,bundle)
+                }
+            })
     }
 }

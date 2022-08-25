@@ -377,39 +377,39 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
-        <TextView
-            android:id="@+id/connected"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:gravity="center"
-            android:text="@string/Connected"
-            android:textColor="@color/green_400"
-            android:textSize="@dimen/connection"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/CarItemImageView"
-            android:visibility="gone"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            android:layout_marginBottom="@dimen/bottomNavigationHeight"
-            tools:layout_editor_absoluteY="699dp" />
-        <TextView
-            android:id="@+id/not_connected"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:gravity="center"
-            android:text="@string/NoConnection"
-            android:textColor="@color/red_400"
-            android:textSize="@dimen/connection"
-            app:layout_constraintBottom_toBottomOf="@id/CarItemImageView"
-            android:textStyle="bold"
-            android:visibility="gone"
-            tools:ignore="MissingConstraints"
-            android:layout_marginBottom="@dimen/bottomNavigationHeight"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="699dp" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/connected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="@string/Connected"
+        android:textColor="@color/green_400"
+        android:textSize="@dimen/connection"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_marginBottom="@dimen/bottomNavigationHeight"
+        tools:layout_editor_absoluteY="699dp" />
+    <TextView
+        android:id="@+id/not_connected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="@string/NoConnection"
+        android:textColor="@color/red_400"
+        android:textSize="@dimen/connection"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints"
+        android:layout_marginBottom="@dimen/bottomNavigationHeight"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="699dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

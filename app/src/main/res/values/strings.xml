@@ -12,7 +12,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="empty">Empty</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
-        AIzaSyAZoSiVaoGe803cDSEdyDR48I1XKILmJfg
+        YOUR GOOGLE MAP API
     </string>
     <string name="group">Group</string>
     <string name="map">Map</string>

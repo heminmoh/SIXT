@@ -15,7 +15,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -34,6 +37,8 @@ class CarsFragment : Fragment() {
     private var binding: FragmentCarsBinding? = null
     private lateinit var carsRecyclerView: RecyclerView
     private lateinit var progressDialog : SIXTProgressDialog
+    private lateinit var navController : NavController
+
     @Inject
     lateinit var liveDataConnection : LiveDataInternetConnections
     override fun onCreateView(
@@ -47,6 +52,7 @@ class CarsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         liveDataConnection = activity?.let { LiveDataInternetConnections(it.application) }!!
+        navController = Navigation.findNavController(view)
         carsRecyclerView = binding?.CarsRecycler!!
         carsRecyclerView.layoutManager = LinearLayoutManager(this.context)
         binding?.connected?.visibility   = View.GONE
@@ -74,6 +80,15 @@ class CarsFragment : Fragment() {
             } catch (e: RuntimeException) {
                 Toast.makeText(this.context,HelperSIXT.CallAgain, Toast.LENGTH_SHORT).show()            }
         }
+
+        requireActivity().onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true)
+            {
+                override fun handleOnBackPressed() {
+                    activity?.moveTaskToBack(true);
+                    activity?.finish();
+                }
+            })
 
     }
 

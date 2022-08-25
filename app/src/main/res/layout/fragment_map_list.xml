@@ -396,7 +396,7 @@
             android:visibility="gone"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="0dp"
-            android:layout_marginBottom="@dimen/CarImageViewMarginTop"
+            android:layout_marginBottom="@dimen/bottomNavigationHeight"
             tools:layout_editor_absoluteY="699dp" />
         <TextView
             android:id="@+id/not_connected"
@@ -412,7 +412,7 @@
             android:visibility="gone"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="0dp"
-            android:layout_marginBottom="@dimen/CarImageViewMarginTop"
+            android:layout_marginBottom="@dimen/bottomNavigationHeight"
             tools:layout_editor_absoluteY="699dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
